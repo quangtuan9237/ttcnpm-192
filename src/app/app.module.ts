@@ -1,4 +1,3 @@
-import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { MatComponentsModule } from './mat-components/mat-components.module';
 import { environment } from './../environments/environment';
