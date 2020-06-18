@@ -1,20 +1,26 @@
+import { RoleService } from './role.service';
+import { UserService } from './user.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Observer, observable } from 'rxjs';
 import * as firebase from 'firebase/app';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AppUser } from './models/app-user';
+import { switchMap } from 'rxjs/operators';
+import {of} from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user$: Observable<firebase.User>;
-  stateChange$: Observable<firebase.User>;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private userService: UserService,
+    private roleService: RoleService
     ) {
    this.user$ = afAuth.authState;
   }
@@ -29,6 +35,30 @@ export class AuthService {
   logout(){
     this.router.navigate(['/']);
     this.afAuth.signOut();
+  }
+
+  // get isAdmin$(): Observable<boolean>{
+  //   return this.user$.pipe(
+  //     switchMap(user => {
+  //       if(user){
+  //         return this.roleService.isAdmin(user.uid).valueChanges()
+  //       }
+
+  //       return of<boolean>(null);
+  //     })
+  //   )
+  // }
+
+  get appUser$(): Observable<AppUser>{
+    return this.user$.pipe(
+      switchMap(user => {
+        if(user){
+          return this.userService.get(user.uid);
+        }
+
+        return of<AppUser>(null)
+      })
+    )
   }
 }
 

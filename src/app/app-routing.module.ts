@@ -1,3 +1,4 @@
+import { AdminAuthGuard } from './admin-auth-guard.service';
 import { MyOrderComponent } from './my-order/my-order.component';
 import { AuthGuard } from './auth-guard.service';
 import { LoginComponent } from './login/login.component';
@@ -16,7 +17,8 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [
-    AuthGuard
+    AuthGuard,
+    AdminAuthGuard
   ],
 })
 export class AppRoutingModule { }

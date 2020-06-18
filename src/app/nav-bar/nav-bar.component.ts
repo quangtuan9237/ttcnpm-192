@@ -1,8 +1,6 @@
+import { AppUser } from './../models/app-user';
 import { AuthService } from './../auth.service';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, OnInit } from '@angular/core';
-import { useAnimation } from '@angular/animations';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'nav-bar',
@@ -10,12 +8,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
+  user: AppUser;
 
   constructor(public auth: AuthService) {
+    this.auth.appUser$.subscribe((user) => this.user = user);
   }
 
   ngOnInit(): void {
-
   }
 
   logout(){
