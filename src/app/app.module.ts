@@ -1,3 +1,4 @@
+import { ProductService } from './product.service';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { MatComponentsModule } from './mat-components/mat-components.module';
@@ -17,6 +18,9 @@ import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './products/products.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MyOrderComponent } from './my-order/my-order.component';
+import { ManageProductComponent } from './manage-product/manage-product.component';
+import { ManageProductFormComponent } from './manage-product-form/manage-product-form.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,6 +31,8 @@ import { MyOrderComponent } from './my-order/my-order.component';
     ProductsComponent,
     NavBarComponent,
     MyOrderComponent,
+    ManageProductComponent,
+    ManageProductFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,10 +42,12 @@ import { MyOrderComponent } from './my-order/my-order.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
-    MatComponentsModule
+    MatComponentsModule,
+    FormsModule
   ],
   providers: [
     AuthService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
