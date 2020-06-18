@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+    <button mat-button routerLink='/'>BK FOOD COURT</button>
+  
+    <!-- This fills the remaining space of the current row -->
+    <span class="example-fill-remaining-space"></span>
+  
+    <ng-template #noLogin>
+        <button mat-raised-button color="primary" routerLink='/login'>Login</button>
+    </ng-template>
+    <button *ngIf="auth.user$ | async as user; else noLogin" mat-button [matMenuTriggerFor]="menu">{{user.displayName}}</button>
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item (click)='logout()'>Logout</button>
+    </mat-menu>
+</mat-toolbar>

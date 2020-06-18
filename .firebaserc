@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "first-project-3d7c4"
+  },
+  "targets": {
+    "first-project-3d7c4": {
+      "hosting": {
+        "first-project": [
+          "first-project-3d7c4"
+        ]
+      }
+    }
   }
 }
