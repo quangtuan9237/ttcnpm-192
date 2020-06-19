@@ -1,20 +1,21 @@
 <div class="container">
-    <mat-grid-list cols="2" rowHeight="700px">
+    <!-- <mat-grid-list cols="2" rowHeight="700px"> -->
+    <mat-grid-list cols="2" rowHeight="1:1">
         <mat-grid-tile>
         <form class="example-form" #f="ngForm" (ngSubmit)='save(f.value)'>
             <mat-form-field class="example-full-width">
             <mat-label>Product name</mat-label>
-            <input #title="ngModel" ngModel name="title" matInput placeholder="Ex. Pizza" value="">
+            <input #title="ngModel" [(ngModel)]="product.title" name="title" matInput placeholder="Ex. Pizza" value="">
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
             <mat-label>Product price</mat-label>
-            <input #price="ngModel" ngModel name="price" matInput placeholder="Ex. Pizza" value="">
+            <input #price="ngModel" [(ngModel)]="product.price" name="price" matInput placeholder="Ex. Pizza" value="">
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
                 <mat-label>Category</mat-label>
-                <mat-select ngModel name='category'>
+                <mat-select [(ngModel)]="product.category" name='category'>
                   <mat-option>Clear</mat-option>
                   <mat-option value="valid">Valid option</mat-option>
                   <mat-option value="invalid">Invalid option</mat-option>
@@ -33,20 +34,21 @@
 
             <mat-form-field class="example-full-width">
             <mat-label>Image url</mat-label>
-            <input #imageUrl="ngModel" ngModel name="imageUrl" matInput placeholder="Ex. Pizza" value="">
+            <input #imageUrl="ngModel" [(ngModel)]="product.imageUrl" name="imageUrl" matInput placeholder="Ex. Pizza" value="">
             </mat-form-field>
+            <button *ngIf="product_id" type="button" (click)="delete()" mat-stroked-button color="primary">Delete</button>
             <button mat-raised-button color="primary">Save</button>
         </form>
         </mat-grid-tile>
 
         <mat-grid-tile>
         <mat-card class="example-card">
-            <img *ngIf='imageUrl.value' mat-card-image [src]="domSanitizer.bypassSecurityTrustUrl(imageUrl.value)" alt="Photo of a Shiba Inu">
+            <img *ngIf='product.imageUrl' mat-card-image [src]="domSanitizer.bypassSecurityTrustUrl(product.imageUrl)" >
             <mat-card-header>
             </mat-card-header>
             <mat-card-content>
-                <mat-card-title>{{ title.value }}</mat-card-title>
-                <p>{{ price.value | currency:'VND':'symbol' }}</p>
+                <mat-card-title>{{ product.title }}</mat-card-title>
+                <p>{{ product.price | currency:'VND':'symbol' }}</p>
             </mat-card-content>
             <!-- <mat-card-actions>
             <button mat-button>LIKE</button>

@@ -10,7 +10,7 @@
 
 .container{
     padding-top: 50px;
-    width: 55%;
+    width: 75%;
     margin: auto;
 }
 
@@ -21,4 +21,8 @@
 .example-header-image {
 background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
 background-size: cover;
+}
+
+button{
+    margin-right: 20px;
 }
