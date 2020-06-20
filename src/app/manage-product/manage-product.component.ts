@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -17,14 +18,18 @@ export class ManageProductComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private auth: AuthService,
   ) {
-    this.productService.getAll().subscribe(products =>{
+
+  }
+
+  async ngOnInit(): Promise<void> {
+    let uid = await (await this.auth.getUser()).uid
+
+    this.productService.getAllVendor(uid).subscribe(products =>{
       this.dataSource = new MatTableDataSource(products)
       this.dataSource.sort = this.sort;
     })
-  }
-
-  ngOnInit(): void {
   }
 }

@@ -48,6 +48,9 @@ export class AuthService {
   //     })
   //   )
   // }
+  async getUser(){
+    return (await this.afAuth.currentUser)
+  }
 
   get appUser$(): Observable<AppUser>{
     return this.user$.pipe(
