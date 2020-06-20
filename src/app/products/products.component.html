@@ -2,7 +2,7 @@
 <mat-grid-list cols="3" rowHeight="550px">
     <mat-grid-tile *ngFor="let p of products$ | async">
         <div>
-            <app-product-card [show-action]='true' [product]='p'>
+            <app-product-card [shopping-cart]='shoppingCart' [show-action]='true' [product]='p'>
             </app-product-card>
         </div>
     </mat-grid-tile>

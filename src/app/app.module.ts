@@ -1,3 +1,4 @@
+import { ShoppingCartService } from './shopping-cart.service';
 import { ProductService } from './product.service';
 import { AuthService } from './auth.service';
 import { MatComponentsModule } from './mat-components/mat-components.module';
@@ -48,7 +49,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
   ],
   providers: [
     AuthService,
-    ProductService
+    ProductService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })
