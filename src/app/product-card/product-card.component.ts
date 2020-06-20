@@ -30,7 +30,8 @@ export class ProductCardComponent implements OnInit {
 
   getQuantity(product){
     if(!this.shoppingCart) return 0;
-    
+    if(!this.shoppingCart.items) return 0;
+
     let item = this.shoppingCart.items[product.key];
     return item? item.quantity : 0;
   }

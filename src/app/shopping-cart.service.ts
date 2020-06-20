@@ -56,7 +56,11 @@ export class ShoppingCartService {
     let item = this.getItem(cart_id, product.key)
     
     item.once("value").then(data => {
-      item.update({quantity: data.val().quantity - 1})
+      if(data.val().quantity == 1){
+        item.remove();
+      }else{
+        item.update({quantity: data.val().quantity - 1})
+      }
     })
   }
 }
