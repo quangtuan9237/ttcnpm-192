@@ -13,6 +13,8 @@ export class ProductService {
   ) { }
 
   create(uid, product){
+    product.owner = uid;
+
     let id = this.db.createPushId();
     let payload = {}
 

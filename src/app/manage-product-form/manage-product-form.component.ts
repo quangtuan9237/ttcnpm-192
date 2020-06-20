@@ -3,7 +3,6 @@ import { AppProduct } from './../models/app-product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from './../product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DomSanitizer} from '@angular/platform-browser';
 import { take } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
@@ -20,7 +19,6 @@ export class ManageProductFormComponent implements OnInit, OnDestroy {
  
   constructor(
     private productService: ProductService,
-    public domSanitizer: DomSanitizer,
     private route: ActivatedRoute,
     private router: Router,
     private auth: AuthService

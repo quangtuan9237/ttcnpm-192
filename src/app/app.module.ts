@@ -20,6 +20,7 @@ import { MyOrderComponent } from './my-order/my-order.component';
 import { ManageProductComponent } from './manage-product/manage-product.component';
 import { ManageProductFormComponent } from './manage-product-form/manage-product-form.component';
 import { FormsModule } from '@angular/forms';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { FormsModule } from '@angular/forms';
     MyOrderComponent,
     ManageProductComponent,
     ManageProductFormComponent,
+    ProductCardComponent,
   ],
   imports: [
     BrowserModule,
