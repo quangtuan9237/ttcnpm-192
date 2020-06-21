@@ -1,3 +1,5 @@
+import { ShoppingCart } from './models/app-shoping-cart';
+import { map } from 'rxjs/operators';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 
@@ -20,7 +22,8 @@ export class ShoppingCartService {
   
   async get(){
     let id = await this.getOrCreateCartId();
-    return this.db.object(`/shopping-carts/${id}`).valueChanges();
+    return this.db.object(`/shopping-carts/${id}`).valueChanges()
+      .pipe(map(shoppingCart => new ShoppingCart(shoppingCart)))
   }
 
   private async getOrCreateCartId(){

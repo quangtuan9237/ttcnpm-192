@@ -6,6 +6,13 @@
     <ng-container *ngIf='user'>
         <span *ngIf='user.isAdmin' class="example-fill-remaining-space">HELLO WOLR IM ADDMIN</span>
     </ng-container>
+    
+    <!-- [matBadge]="cart$ | async ; let cart.totalItemCount" matBadgeColor="accent" -->
+    <button
+    mat-button routerLink='/'>
+    Shopping Cart
+    <span *ngIf="cart$ | async ; let cart" [matBadge]="cart.totalItemCount" matBadgeColor="accent" matBadgeOverlap="false"></span>
+    </button>
   
     <ng-template #noLogin>
         <button mat-raised-button color="primary" routerLink='/login'>Login</button>

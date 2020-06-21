@@ -1,3 +1,5 @@
+import { AppProduct } from './models/app-product';
+import { AppProductList } from './models/app-list-product';
 import { AngularFireDatabase, SnapshotAction } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 import { map,switchMap } from 'rxjs/operators';
@@ -12,50 +14,40 @@ export class ProductService {
     private db: AngularFireDatabase,
   ) { }
 
-  create(uid, product){
-    product.owner = uid;
+  create(user_id, product){
+    product.owner = user_id;
 
     let id = this.db.createPushId();
     let payload = {}
 
     payload['/products/' + id] = product;
-    payload[`/users/${uid}/products/${id}`] = true;
+    payload[`/users/${user_id}/products/${id}`] = true;
 
     return this.db.database.ref().update(payload);
   }
 
-  getAllVendor(uid){
-    return this.db.object(`/users/${uid}/products`).valueChanges().pipe(
-      switchMap((setProducts : object) => {
-        let listProduct:Observable<SnapshotAction<unknown>>[] = []
-        for(const property in setProducts){
-          if(setProducts[property] == true){
-            listProduct.push(this.db.object(`/products/${property}`).snapshotChanges())
-            // console.log(listProduct);
-          }
-        }
+  getAllVendor(user_id){
+    return this.db.object(`/users/${user_id}/products`).valueChanges().pipe(
+      switchMap((setProducts) => {
+        let listId = Object.keys(setProducts);
 
-        return zip(...listProduct)
+        return zip(...listId.map((id) => this.get(id)))
       })
-    ).pipe(
-      map(changes => changes.map(c => {
-        let value:Object = c.payload.val();
-        return { key: c.key, ...value}
-      }))
-    );
+    )
   }
 
   getAll(){
-    return this.db.list('/products').snapshotChanges().pipe(
-      map(changes => changes.map(c => {
-        let value:Object = c.payload.val();
-        return { key: c.key, ...value}
-      }))
-    );
+    return this.db.object('/products').valueChanges().pipe(
+      map(value => {
+        return new AppProductList(value).get()
+      })
+    )
   }
 
   get(id){
-    return this.db.object('/products/' + id).valueChanges();
+    return this.db.object('/products/' + id).snapshotChanges().pipe(
+      map(snapshot => new AppProduct(snapshot.key, snapshot.payload.val()))
+    )
   }
 
   update(id, product){
@@ -68,9 +60,6 @@ export class ProductService {
     payload[`/users/${user_id}/products/${id}`] = null;
 
     this.db.database.ref().update(payload);
-
-    // this.db.object(`/products/${id}`).remove();
-    // this.db.object(`/users/${user_id}/products/${id}`).remove();
   }
 }
 

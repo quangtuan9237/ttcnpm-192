@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 export class ManageProductFormComponent implements OnInit, OnDestroy {
   product_id: String
   user: firebase.User
-  product = new AppProduct()
+  product = {} as AppProduct
   userSubscription: Subscription
  
   constructor(
@@ -25,7 +25,10 @@ export class ManageProductFormComponent implements OnInit, OnDestroy {
   ) { 
 
     this.product_id = this.route.snapshot.paramMap.get('id');
-    if(this.product_id) this.productService.get(this.product_id).pipe(take(1)).subscribe(p => this.product = new AppProduct(p));
+    if(this.product_id) {
+      this.productService.get(this.product_id).pipe(take(1))
+        .subscribe(p => this.product = p);
+    }
   }
 
   ngOnInit(): void {

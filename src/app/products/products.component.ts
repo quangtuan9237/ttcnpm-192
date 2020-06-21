@@ -10,18 +10,19 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   products$
-  shoppingCart
+  shoppingCart;
   subscription: Subscription
 
   constructor(
     private productService: ProductService,
     private cartService: ShoppingCartService
   ) {
-    this.products$ = this.productService.getAll();
+    this.products$ = this.productService.getAll()
   }
 
   async ngOnInit(){
     this.subscription = (await this.cartService.get()).subscribe(cart => {
+      console.log(cart)
       this.shoppingCart = cart
     })
   }

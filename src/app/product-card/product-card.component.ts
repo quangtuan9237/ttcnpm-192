@@ -1,3 +1,5 @@
+import { AppProduct } from './../models/app-product';
+import { ShoppingCart } from './../models/app-shoping-cart';
 import { ShoppingCartService } from './../shopping-cart.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
@@ -8,9 +10,9 @@ import { DomSanitizer} from '@angular/platform-browser';
   styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
-  @Input('product') product;
+  @Input('product') product: AppProduct;
   @Input('show-action') showAction = false;
-  @Input('shopping-cart') shoppingCart;
+  @Input('shopping-cart') shoppingCart: ShoppingCart;
 
   constructor(
     public domSanitizer: DomSanitizer,
@@ -28,11 +30,8 @@ export class ProductCardComponent implements OnInit {
     this.cartService.removeFromCart(product);
   }
 
-  getQuantity(product){
+  getQuantity(product: AppProduct){
     if(!this.shoppingCart) return 0;
-    if(!this.shoppingCart.items) return 0;
-
-    let item = this.shoppingCart.items[product.key];
-    return item? item.quantity : 0;
+    return this.shoppingCart.getItemQuantity(product);
   }
 }
