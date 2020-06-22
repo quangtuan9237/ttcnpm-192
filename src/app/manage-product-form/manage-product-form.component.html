@@ -36,6 +36,7 @@
             <mat-label>Image url</mat-label>
             <input #imageUrl="ngModel" [(ngModel)]="product.imageUrl" name="imageUrl" matInput placeholder="Ex. Pizza" value="">
             </mat-form-field>
+
             <button *ngIf="product_id" type="button" (click)="delete()" mat-stroked-button color="primary">Delete</button>
             <button mat-raised-button color="primary">Save</button>
         </form>

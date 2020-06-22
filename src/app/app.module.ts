@@ -20,6 +20,9 @@ import { MyOrderComponent } from './my-order/my-order.component';
 import { ManageProductComponent } from './manage-product/manage-product.component';
 import { ManageProductFormComponent } from './manage-product-form/manage-product-form.component';
 import { FormsModule } from '@angular/forms';
+import { ManageCouponComponent } from './manage-coupon/manage-coupon.component';
+import { ManageCouponFormComponent } from './manage-coupon-form/manage-coupon-form.component';
+import { CouponsComponent } from './coupons/coupons.component';
 
 
 @NgModule({
@@ -32,6 +35,9 @@ import { FormsModule } from '@angular/forms';
     MyOrderComponent,
     ManageProductComponent,
     ManageProductFormComponent,
+    ManageCouponComponent,
+    ManageCouponFormComponent,
+    CouponsComponent,
   ],
   imports: [
     BrowserModule,
