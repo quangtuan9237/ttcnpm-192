@@ -1,3 +1,4 @@
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { VendorAuthGuard } from './vendor-auth-guard.service';
 import { ManageProductFormComponent } from './manage-product-form/manage-product-form.component';
 import { ManageProductComponent } from './manage-product/manage-product.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'admin/products', component: ManageProductComponent, canActivate: [AuthGuard, AdminAuthGuard]},
   {path: 'admin/products/new', component: ManageProductFormComponent, canActivate: [AuthGuard, AdminAuthGuard]},
   {path: 'admin/products/:id', component: ManageProductFormComponent, canActivate: [AuthGuard, AdminAuthGuard]},
+  {path: 'shopping-cart', component: ShoppingCartComponent},
 ];
 
 @NgModule({

@@ -8,18 +8,11 @@
     </mat-card-content>
     <mat-card-actions *ngIf="showAction">
     <button mat-button 
-    *ngIf="getQuantity(product) === 0; else updateQuantity"
+    *ngIf="shoppingCart.getQuantity(product) === 0; else updateQuantity"
     (click)='addToCart(product)'>Add to Cart</button>
 
     <ng-template #updateQuantity>
-        <button class="quantity-btn" 
-        (click)='addToCart(product)' 
-        mat-flat-button color color="primary">+</button>
-
-        <button class="quantity-btn"
-        (click)='removeFromCart(product)' 
-        [matBadge]="getQuantity(product)" matBadgeColor="accent"
-        mat-stroked-button color="primary">-</button>
+        <app-product-quantity [product]="product" [shopping-cart]="shoppingCart"></app-product-quantity>
     </ng-template>
 
     </mat-card-actions>

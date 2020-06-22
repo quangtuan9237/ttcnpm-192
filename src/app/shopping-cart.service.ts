@@ -1,3 +1,4 @@
+import { AppProduct } from './models/app-product';
 import { ShoppingCart } from './models/app-shoping-cart';
 import { map } from 'rxjs/operators';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -23,7 +24,10 @@ export class ShoppingCartService {
   async get(){
     let id = await this.getOrCreateCartId();
     return this.db.object(`/shopping-carts/${id}`).valueChanges()
-      .pipe(map(shoppingCart => new ShoppingCart(shoppingCart)))
+      .pipe(map(shoppingCart => {
+        // console.log(new ShoppingCart(shoppingCart))
+        return new ShoppingCart(shoppingCart)
+      }))
   }
 
   private async getOrCreateCartId(){
@@ -40,12 +44,17 @@ export class ShoppingCartService {
     return this.db.database.ref(`/shopping-carts/${cart_id}/items/${produc_id}`);
   }
 
-  async addToCart(product){
+  async addToCart(product: AppProduct){
     let cart_id = await this.getOrCreateCartId();
     let item = this.getItem(cart_id, product.key)
     
     if(!(await item.once("value")).exists()){
-      item.update({product: product, quantity: 1});
+      item.update({
+        title: product.title,
+        price: product.price,
+        category: product.category,
+        imageUrl: product.imageUrl,
+        quantity: 1});
       return;
     }
 

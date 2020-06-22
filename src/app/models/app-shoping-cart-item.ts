@@ -1,11 +1,18 @@
 import { AppProduct } from './app-product';
 
 export class ShoppingCartItem{
-   product: AppProduct
+   key: string = ""
+   title: string = "";
+   price: number = 0;
+   category: string = "";
+   imageUrl: string = "";
    quantity: number
 
    constructor(item){
-      this.product = item.product;
-      this.quantity = item.quantity
+      Object.assign(this, item);
+   }
+
+   get totalPrice(){
+      return this.quantity*this.price;
    }
 };

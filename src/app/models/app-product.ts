@@ -1,7 +1,7 @@
 export class AppProduct{
    key: string = ""
    title: string = "";
-   price: string = "";
+   price: number = 0;
    category: string = "";
    imageUrl: string = "";
 

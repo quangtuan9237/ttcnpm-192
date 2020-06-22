@@ -22,6 +22,8 @@ import { ManageProductComponent } from './manage-product/manage-product.componen
 import { ManageProductFormComponent } from './manage-product-form/manage-product-form.component';
 import { FormsModule } from '@angular/forms';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 
 @NgModule({
@@ -35,6 +37,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
     ManageProductComponent,
     ManageProductFormComponent,
     ProductCardComponent,
+    ShoppingCartComponent,
+    ProductQuantityComponent,
   ],
   imports: [
     BrowserModule,

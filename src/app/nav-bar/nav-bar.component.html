@@ -9,7 +9,7 @@
     
     <!-- [matBadge]="cart$ | async ; let cart.totalItemCount" matBadgeColor="accent" -->
     <button
-    mat-button routerLink='/'>
+    mat-button routerLink='/shopping-cart'>
     Shopping Cart
     <span *ngIf="cart$ | async ; let cart" [matBadge]="cart.totalItemCount" matBadgeColor="accent" matBadgeOverlap="false"></span>
     </button>
