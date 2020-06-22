@@ -12,7 +12,7 @@ import { ShoppingCart } from '../models/app-shoping-cart';
 export class ShoppingCartComponent implements OnInit {
   cart$ : Observable<ShoppingCart>
 
-  displayedColumns = ['title', 'quantity', 'total_price'];
+  displayedColumns = ['thumbnail', 'title', 'quantity', 'total_price'];
 
   constructor(
     private cart: ShoppingCartService,
@@ -21,5 +21,10 @@ export class ShoppingCartComponent implements OnInit {
 
   async ngOnInit(){
     this.cart$ = await this.cart.get()
+  }
+
+  async clearCart(){
+    if(!confirm("Are you sure you want to clear the shopping cart?")) return;
+    await this.cart.clearCart();
   }
 }

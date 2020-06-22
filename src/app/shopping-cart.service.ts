@@ -15,12 +15,6 @@ export class ShoppingCartService {
 
   }
 
-  private create(){
-    return this.db.list('/shopping-carts').push({
-      dateCreated: new Date().getTime()
-    })
-  }
-  
   async get(){
     let id = await this.getOrCreateCartId();
     return this.db.object(`/shopping-carts/${id}`).valueChanges()
@@ -28,20 +22,6 @@ export class ShoppingCartService {
         // console.log(new ShoppingCart(shoppingCart))
         return new ShoppingCart(shoppingCart)
       }))
-  }
-
-  private async getOrCreateCartId(){
-    let cart_id = localStorage.getItem('cart_id');
-    if(!cart_id){
-      cart_id = await this.create().key
-      localStorage.setItem('cart_id', cart_id)
-    }
-
-    return cart_id
-  }
-
-  private getItem(cart_id, produc_id){
-    return this.db.database.ref(`/shopping-carts/${cart_id}/items/${produc_id}`);
   }
 
   async addToCart(product: AppProduct){
@@ -74,5 +54,30 @@ export class ShoppingCartService {
         item.update({quantity: data.val().quantity - 1})
       }
     })
+  }
+
+  async clearCart(){
+    let id = await this.getOrCreateCartId();
+    this.db.object(`/shopping-carts/${id}/items`).remove();
+  }
+
+  private create(){
+    return this.db.list('/shopping-carts').push({
+      dateCreated: new Date().getTime()
+    })
+  }
+
+  private async getOrCreateCartId(){
+    let cart_id = localStorage.getItem('cart_id');
+    if(!cart_id){
+      cart_id = await this.create().key
+      localStorage.setItem('cart_id', cart_id)
+    }
+
+    return cart_id
+  }
+
+  private getItem(cart_id, produc_id){
+    return this.db.database.ref(`/shopping-carts/${cart_id}/items/${produc_id}`);
   }
 }
