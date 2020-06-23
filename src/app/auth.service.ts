@@ -20,7 +20,6 @@ export class AuthService {
     private route: ActivatedRoute,
     private afAuth: AngularFireAuth,
     private userService: UserService,
-    private roleService: RoleService
     ) {
    this.user$ = afAuth.authState;
   }
@@ -37,19 +36,8 @@ export class AuthService {
     this.afAuth.signOut();
   }
 
-  // get isAdmin$(): Observable<boolean>{
-  //   return this.user$.pipe(
-  //     switchMap(user => {
-  //       if(user){
-  //         return this.roleService.isAdmin(user.uid).valueChanges()
-  //       }
-
-  //       return of<boolean>(null);
-  //     })
-  //   )
-  // }
   async getUser(){
-    return (await this.afAuth.currentUser)
+    return await (this.afAuth.currentUser)
   }
 
   get appUser$(): Observable<AppUser>{

@@ -24,6 +24,9 @@ import { FormsModule } from '@angular/forms';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { CheckOutComponent } from './check-out/check-out.component';
+import { CartTableComponent } from './cart-table/cart-table.component';
+import { OrderSucessComponent } from './order-sucess/order-sucess.component';
 
 
 @NgModule({
@@ -39,6 +42,9 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     ProductCardComponent,
     ShoppingCartComponent,
     ProductQuantityComponent,
+    CheckOutComponent,
+    CartTableComponent,
+    OrderSucessComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,40 @@
+<div class="example-container mat-elevation-z8">
+    <table class="cart-table" mat-table [dataSource]="cart.items">
+      <!-- Image Column -->
+      <ng-container matColumnDef="thumbnail">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let product">
+          <div style.backgroundImage="url({{product.imageUrl}})"class="thumbnail"></div>
+        </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Title</th>
+        <td mat-cell *matCellDef="let product"> {{ product.title }} </td>
+        <td mat-footer-cell *matFooterCellDef> Total </td>
+      </ng-container>
+  
+      <!-- Quantity Column -->
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let product">
+        <app-product-quantity *ngIf="allowAction" [product]="product" [shopping-cart]="cart"></app-product-quantity>
+        <span *ngIf="!allowAction">{{ product.quantity }}</span>
+        </td>
+        <td mat-footer-cell *matFooterCellDef> {{ cart.totalItemCount }} </td>
+      </ng-container>
+
+      <!-- Price Column -->
+      <ng-container matColumnDef="total_price">
+        <th mat-header-cell *matHeaderCellDef> Total Price </th>
+        <td mat-cell *matCellDef="let product"> {{ product.totalPrice | currency:'VND':'symbol'  }} </td>
+        <td mat-footer-cell *matFooterCellDef> {{ cart.totalPrice | currency:'VND':'symbol' }} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+    </table>
+</div>
