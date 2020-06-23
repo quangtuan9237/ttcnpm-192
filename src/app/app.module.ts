@@ -27,6 +27,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
 import { CheckOutComponent } from './check-out/check-out.component';
 import { CartTableComponent } from './cart-table/cart-table.component';
 import { OrderSucessComponent } from './order-sucess/order-sucess.component';
+import { ManageOrderComponent } from './manage-order/manage-order.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { OrderSucessComponent } from './order-sucess/order-sucess.component';
     CheckOutComponent,
     CartTableComponent,
     OrderSucessComponent,
+    ManageOrderComponent,
   ],
   imports: [
     BrowserModule,

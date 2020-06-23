@@ -1,3 +1,4 @@
+import { ManageOrderComponent } from './manage-order/manage-order.component';
 import { OrderSucessComponent as OrderSuccessComponent } from './order-sucess/order-sucess.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'shopping-cart', component: ShoppingCartComponent},
   {path: 'check-out', component: CheckOutComponent},
   {path: 'order-success/:id', component: OrderSuccessComponent},
+  {path: 'admin/orders', component: ManageOrderComponent, canActivate: [AuthGuard, AdminAuthGuard]},
 ];
 
 @NgModule({
