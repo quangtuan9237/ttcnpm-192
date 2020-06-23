@@ -13,13 +13,13 @@ import { take } from 'rxjs/operators';
 export class ManageProductFormComponent implements OnInit {
   product_id: String
   product = new AppProduct()
- 
+
   constructor(
     private productService: ProductService,
     public domSanitizer: DomSanitizer,
     private route: ActivatedRoute,
     private router: Router
-  ) { 
+  ) {
 
     this.product_id = this.route.snapshot.paramMap.get('id');
     if(this.product_id) this.productService.get(this.product_id).pipe(take(1)).subscribe(p => this.product = new AppProduct(p));
@@ -38,6 +38,10 @@ export class ManageProductFormComponent implements OnInit {
   delete(){
     if(!confirm("Are you sure you want to delete this product?")) return;
     this.productService.delete(this.product_id);
+    this.router.navigate(['../'], {relativeTo: this.route});
+  }
+  cancel(){
+    if(!confirm("Are you sure you want to cancel this action?")) return;
     this.router.navigate(['../'], {relativeTo: this.route});
   }
 }

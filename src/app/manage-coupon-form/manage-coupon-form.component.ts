@@ -34,6 +34,10 @@ export class ManageCouponFormComponent implements OnInit {
 
     this.router.navigate(['../'], {relativeTo: this.route});
   }
+  cancel(){
+    if(!confirm("Are you sure you want to cancel this action?")) return;
+    this.router.navigate(['../'], {relativeTo: this.route});
+  }
 
   delete(){
     if(!confirm("Are you sure you want to delete this coupon?")) return;

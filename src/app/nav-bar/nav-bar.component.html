@@ -14,10 +14,11 @@
 
     <mat-menu #menu="matMenu">
         <ng-container *ngIf='user'>
-            <button *ngIf='user.isAdmin' routerLink='/{{user.role}}/coupons' mat-menu-item>Manage Coupons</button>
             <button *ngIf='user.isAdmin' routerLink='/{{user.role}}/products' mat-menu-item>Manage Products</button>
+            <button *ngIf='user.isAdmin' routerLink='/{{user.role}}/coupons' mat-menu-item>Manage Coupons</button>
             <button *ngIf='user.isAdmin' mat-menu-item>Manage Orders</button>
             <button *ngIf='user.isAdmin' mat-menu-item>Manage Users</button>
+
         </ng-container>
         <button mat-menu-item (click)='logout()'>Logout</button>
     </mat-menu>

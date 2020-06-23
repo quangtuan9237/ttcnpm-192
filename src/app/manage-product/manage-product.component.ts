@@ -27,4 +27,5 @@ export class ManageProductComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 }
