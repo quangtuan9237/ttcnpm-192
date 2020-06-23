@@ -28,6 +28,9 @@ import { CheckOutComponent } from './check-out/check-out.component';
 import { CartTableComponent } from './cart-table/cart-table.component';
 import { OrderSucessComponent } from './order-sucess/order-sucess.component';
 import { ManageOrderComponent } from './manage-order/manage-order.component';
+import { ManageCouponComponent } from './manage-coupon/manage-coupon.component';
+import { ManageCouponFormComponent } from './manage-coupon-form/manage-coupon-form.component';
+import { CouponsComponent } from './coupons/coupons.component';
 
 
 @NgModule({
@@ -47,6 +50,9 @@ import { ManageOrderComponent } from './manage-order/manage-order.component';
     CartTableComponent,
     OrderSucessComponent,
     ManageOrderComponent,
+    ManageCouponComponent,
+    ManageCouponFormComponent,
+    CouponsComponent,
   ],
   imports: [
     BrowserModule,

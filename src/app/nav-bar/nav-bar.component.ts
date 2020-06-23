@@ -24,7 +24,7 @@ export class NavBarComponent implements OnInit {
     this.cart$ = (await this.cart.get())
   }
 
-  logout(){
+  logout() {
     this.auth.logout();
   }
 

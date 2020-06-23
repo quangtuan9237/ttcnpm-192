@@ -31,13 +31,25 @@
                   Your selection is invalid
                 </mat-error> -->
             </mat-form-field>
+            <!--Expired Time
+            <mat-form-field class="example-full-width">
+                <mat-label>Expired Time</mat-label>
+                <mat-select [(ngModel)]="product.expired_time" name='expired_time'>
+                  <mat-option></mat-option>
+                  <mat-option value="valid">Valid option</mat-option>
+                  <mat-option value="invalid">Invalid option</mat-option>
+                </mat-select>
+              </mat-form-field>
+            -->
 
             <mat-form-field class="example-full-width">
             <mat-label>Image url</mat-label>
             <input #imageUrl="ngModel" [(ngModel)]="product.imageUrl" name="imageUrl" matInput placeholder="Ex. Pizza" value="">
             </mat-form-field>
+
             <button *ngIf="product_id" type="button" (click)="delete()" mat-stroked-button color="primary">Delete</button>
             <button mat-raised-button color="primary">Save</button>
+            <button *ngIf="product_id" type="button" (click)="cancel()" mat-raised-button color="primary">Cancel</button>
         </form>
         </mat-grid-tile>
 

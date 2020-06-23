@@ -131,5 +131,8 @@
       }
     }
   },
-  "defaultProject": "first-project"
+  "defaultProject": "first-project",
+  "cli": {
+    "analytics": false
+  }
 }

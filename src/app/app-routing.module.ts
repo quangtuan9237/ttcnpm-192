@@ -5,6 +5,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { VendorAuthGuard } from './vendor-auth-guard.service';
 import { ManageProductFormComponent } from './manage-product-form/manage-product-form.component';
 import { ManageProductComponent } from './manage-product/manage-product.component';
+import { ManageCouponFormComponent } from './manage-coupon-form/manage-coupon-form.component';
+import { ManageCouponComponent } from './manage-coupon/manage-coupon.component';
 import { AdminAuthGuard } from './admin-auth-guard.service';
 import { MyOrderComponent } from './my-order/my-order.component';
 import { AuthGuard } from './auth-guard.service';
@@ -25,6 +27,9 @@ const routes: Routes = [
   {path: 'check-out', component: CheckOutComponent},
   {path: 'order-success/:id', component: OrderSuccessComponent},
   {path: 'admin/orders', component: ManageOrderComponent, canActivate: [AuthGuard, AdminAuthGuard]},
+  { path: 'admin/coupons', component: ManageCouponComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+  { path: 'admin/coupons/new', component: ManageCouponFormComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+  { path: 'admin/coupons/:id', component: ManageCouponFormComponent, canActivate: [AuthGuard, AdminAuthGuard] },
 ];
 
 @NgModule({

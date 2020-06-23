@@ -55,4 +55,8 @@ export class ManageProductFormComponent implements OnInit, OnDestroy {
     this.productService.delete(this.user.uid, this.product_id);
     this.router.navigate(['../'], {relativeTo: this.route});
   }
+  cancel(){
+    if(!confirm("Are you sure you want to cancel this action?")) return;
+    this.router.navigate(['../'], {relativeTo: this.route});
+  }
 }
