@@ -1,0 +1,8 @@
+<div class="container">
+<h1>Checkout</h1>
+<ng-container *ngIf="cart$ | async as cart">
+<p>You have {{ cart.totalItemCount }} items in your shopping cart.</p>
+<app-cart-table [shopping-cart]="cart" [displayed-columns]="displayedColumns"></app-cart-table>
+<button (click)='placeOrder()' mat-raised-button color="primary">Confirm</button>
+</ng-container>
+</div>

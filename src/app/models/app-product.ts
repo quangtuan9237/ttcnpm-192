@@ -1,15 +1,16 @@
-export class AppProduct {
-  title: string = "";
-  price: string = "";
-  category: string = "";
-  imageUrl: string = "";
 
-  constructor(user?) {
-    if (user) {
-      this.title = user.title;
-      this.price = user.price;
-      this.category = user.category;
-      this.imageUrl = user.imageUrl;
-    }
-  }
+export class AppProduct{
+   key: string = ""
+   title: string = "";
+   price: number = 0;
+   category: string = "";
+   imageUrl: string = "";
+
+   constructor(key, product){
+      this.key = key
+      this.title = product.title;
+      this.price = product.price;
+      this.category = product.category;
+      this.imageUrl = product.imageUrl;
+   }
 };

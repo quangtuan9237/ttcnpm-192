@@ -1,3 +1,4 @@
+import { ShoppingCartService } from './shopping-cart.service';
 import { ProductService } from './product.service';
 import { AuthService } from './auth.service';
 import { MatComponentsModule } from './mat-components/mat-components.module';
@@ -23,6 +24,13 @@ import { FormsModule } from '@angular/forms';
 import { ManageCouponComponent } from './manage-coupon/manage-coupon.component';
 import { ManageCouponFormComponent } from './manage-coupon-form/manage-coupon-form.component';
 import { CouponsComponent } from './coupons/coupons.component';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { CheckOutComponent } from './check-out/check-out.component';
+import { CartTableComponent } from './cart-table/cart-table.component';
+import { OrderSucessComponent } from './order-sucess/order-sucess.component';
+import { ManageOrderComponent } from './manage-order/manage-order.component';
 
 
 @NgModule({
@@ -38,6 +46,13 @@ import { CouponsComponent } from './coupons/coupons.component';
     ManageCouponComponent,
     ManageCouponFormComponent,
     CouponsComponent,
+    ProductCardComponent,
+    ShoppingCartComponent,
+    ProductQuantityComponent,
+    CheckOutComponent,
+    CartTableComponent,
+    OrderSucessComponent,
+    ManageOrderComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +67,8 @@ import { CouponsComponent } from './coupons/coupons.component';
   ],
   providers: [
     AuthService,
-    ProductService
+    ProductService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,8 @@
+<button class="quantity-btn" 
+(click)='cart.addToCart(product)' 
+mat-flat-button color color="primary">+</button>
+
+<button class="quantity-btn"
+(click)='cart.removeFromCart(product)' 
+[matBadge]="shoppingCart.getQuantity(product)" matBadgeColor="accent"
+mat-stroked-button color="primary">-</button>
