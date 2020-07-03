@@ -23,8 +23,10 @@ export class OrderService {
     return this.db.object('/orders').valueChanges().pipe(
       map(test => {
         console.log(test);
-        return test
+        return test;
       })
     )
   }
+
+
 }

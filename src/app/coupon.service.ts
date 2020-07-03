@@ -11,29 +11,36 @@ export class CouponService {
     private db: AngularFireDatabase
   ) { }
 
-  create(coupon){
+  create(coupon) {
     return this.db.list('/coupons').push(coupon);
   }
 
-  getAll(){
+  getAll() {
     return this.db.list('/coupons').snapshotChanges().pipe(
       map(changes => changes.map(c => {
-        let value:Object = c.payload.val();
-        return { key: c.key, ...value}
+        let value: Object = c.payload.val();
+        return { key: c.key, ...value }
       }))
     );
   }
 
-  get(id){
+  getCoupon(value) {
+    return this.db.object('/coupons/' + value).valueChanges();
+  }
+
+  get(id) {
     return this.db.object('/coupons/' + id).valueChanges();
   }
 
-  update(id, coupon){
+  update(id, coupon) {
     this.db.object('/coupons/' + id).update(coupon);
   }
 
-  delete(id){
+  delete(id) {
     this.db.object('/coupons/' + id).remove();
+  }
+  findCoupon() {
+
   }
 }
 

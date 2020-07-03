@@ -13,14 +13,14 @@ import { Subscription } from 'rxjs';
 })
 export class ManageProductFormComponent implements OnInit, OnDestroy {
   product_id: String
-  product = new AppProduct()
+  //product = new AppProduct()
   user: firebase.User
   product = {} as AppProduct
   userSubscription: Subscription
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute;
+    private route: ActivatedRoute,
     private router: Router,
     private auth: AuthService
   ) {

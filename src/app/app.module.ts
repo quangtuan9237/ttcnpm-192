@@ -31,6 +31,7 @@ import { CheckOutComponent } from './check-out/check-out.component';
 import { CartTableComponent } from './cart-table/cart-table.component';
 import { OrderSucessComponent } from './order-sucess/order-sucess.component';
 import { ManageOrderComponent } from './manage-order/manage-order.component';
+import { FilterComponent } from './filter/filter.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { ManageOrderComponent } from './manage-order/manage-order.component';
     CartTableComponent,
     OrderSucessComponent,
     ManageOrderComponent,
+    FilterComponent,
   ],
   imports: [
     BrowserModule,

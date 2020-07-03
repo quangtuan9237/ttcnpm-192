@@ -5,9 +5,10 @@
     <mat-card-content>
         <mat-card-title>{{ product.title }}</mat-card-title>
         <p>{{ product.price | currency:'VND':'symbol' }}</p>
+        <p>{{ product.type}}</p>
     </mat-card-content>
     <mat-card-actions *ngIf="showAction">
-    <button mat-button 
+    <button mat-button
     *ngIf="shoppingCart.getQuantity(product) === 0; else updateQuantity"
     (click)='addToCart(product)'>Add to Cart</button>
 

@@ -1,12 +1,20 @@
+<div>
+  <button type="button" mat-raised-button color="primary">Search</button>
+<mat-form-field>
+  <mat-label>Product Name</mat-label>
+  <input  matInput placeholder="Ex. 15" value="">
+  </mat-form-field>
+</div>
+<app-filter></app-filter>
 <div class="container">
-<mat-grid-list cols="3" rowHeight="550px">
+  <mat-grid-list cols="3" rowHeight="550px">
     <mat-grid-tile *ngFor="let p of products$ | async">
-        <div>
-            <app-product-card [shopping-cart]='shoppingCart' [show-action]='true' [product]='p'>
-            </app-product-card>
-        </div>
+      <div>
+        <app-product-card [shopping-cart]='shoppingCart' [show-action]='true' [product]='p'>
+        </app-product-card>
+      </div>
     </mat-grid-tile>
-</mat-grid-list>
+  </mat-grid-list>
 </div>
 
 <!-- <div *ngIf="shoppingCart">

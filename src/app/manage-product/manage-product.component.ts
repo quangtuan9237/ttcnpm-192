@@ -13,7 +13,7 @@ import {MatSort} from '@angular/material/sort';
 })
 export class ManageProductComponent implements OnInit {
   products$: Observable<any>;
-  displayedColumns: string[] = ['title', 'price', 'category', 'edit'];
+  displayedColumns: string[] = ['title', 'price', 'type', 'category', 'edit'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 

@@ -13,6 +13,14 @@
             <input #price="ngModel" [(ngModel)]="product.price" name="price" matInput placeholder="Ex. Pizza" value="">
             </mat-form-field>
 
+              <mat-form-field class="example-full-width">
+                <mat-label>Type</mat-label>
+                <mat-select [(ngModel)]="product.type" name='type'>
+                  <mat-option value="Food">Food</mat-option>
+                  <mat-option value="Water">Water</mat-option>
+                </mat-select>
+            </mat-form-field>
+
             <mat-form-field class="example-full-width">
                 <mat-label>Category</mat-label>
                 <mat-select [(ngModel)]="product.category" name='category'>
@@ -20,16 +28,6 @@
                   <mat-option value="valid">Valid option</mat-option>
                   <mat-option value="invalid">Invalid option</mat-option>
                 </mat-select>
-                <!-- <mat-select [formControl]="selected" [errorStateMatcher]="matcher">
-                  <mat-option>Clear</mat-option>
-                  <mat-option value="valid">Valid option</mat-option>
-                  <mat-option value="invalid">Invalid option</mat-option>
-                </mat-select> -->
-                <!-- <mat-hint>Errors appear instantly!</mat-hint>
-                <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error>
-                <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
-                  Your selection is invalid
-                </mat-error> -->
             </mat-form-field>
             <!--Expired Time
             <mat-form-field class="example-full-width">

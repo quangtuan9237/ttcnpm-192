@@ -2,7 +2,7 @@ import { AppProduct } from './models/app-product';
 import { AppProductList } from './models/app-list-product';
 import { AngularFireDatabase, SnapshotAction } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
-import { map,switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { zip, Observable } from 'rxjs';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class ProductService {
     private db: AngularFireDatabase,
   ) { }
 
-  create(user_id, product){
+  create(user_id, product) {
     product.owner = user_id;
 
     let id = this.db.createPushId();
@@ -26,7 +26,7 @@ export class ProductService {
     return this.db.database.ref().update(payload);
   }
 
-  getAllVendor(user_id){
+  getAllVendor(user_id) {
     return this.db.object(`/users/${user_id}/products`).valueChanges().pipe(
       switchMap((setProducts) => {
         let listId = Object.keys(setProducts);
@@ -35,8 +35,10 @@ export class ProductService {
       })
     )
   }
+  displayByVendor(vendor_id) {
 
-  getAll(){
+  }
+  getAll() {
     return this.db.object('/products').valueChanges().pipe(
       map(value => {
         return new AppProductList(value).get()
@@ -44,17 +46,17 @@ export class ProductService {
     )
   }
 
-  get(id){
+  get(id) {
     return this.db.object('/products/' + id).snapshotChanges().pipe(
       map(snapshot => new AppProduct(snapshot.key, snapshot.payload.val()))
     )
   }
 
-  update(id, product){
+  update(id, product) {
     this.db.object('/products/' + id).update(product);
   }
 
-  delete(user_id, id){
+  delete(user_id, id) {
     let payload = {}
     payload[`/products/${id}`] = null;
     payload[`/users/${user_id}/products/${id}`] = null;
