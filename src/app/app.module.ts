@@ -32,6 +32,7 @@ import { CartTableComponent } from './cart-table/cart-table.component';
 import { OrderSucessComponent } from './order-sucess/order-sucess.component';
 import { ManageOrderComponent } from './manage-order/manage-order.component';
 import { FilterComponent } from './filter/filter.component';
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { FilterComponent } from './filter/filter.component';
     OrderSucessComponent,
     ManageOrderComponent,
     FilterComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
