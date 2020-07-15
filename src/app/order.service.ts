@@ -1,7 +1,7 @@
 import { ShoppingCartService } from './shopping-cart.service';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, switchMap, zip } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -25,13 +25,29 @@ export class OrderService {
 
   getOrdersByUser(userId: string) {
     return this.db.list('/orders', query => query.orderByChild('userId').equalTo(userId))
-    .valueChanges(); 
+    .valueChanges().pipe(
+      map(test => {
+        console.log(test);
+        return test
+      })
+    )
   }
+
+  // getOrdersByUser(user_id){
+  //   return this.db.object(`/orders`).valueChanges().pipe(
+  //     switchMap((setProducts) => {
+  //       let listId = Object.keys(setProducts);
+
+  //       return zip(...listId.map((id) => this.get(id)))
+  //     })
+  //   )
+  // }
+
 
   getAll(){
     return this.db.object('/orders').valueChanges().pipe(
       map(test => {
-        console.log(test);
+        // console.log(test);
         return test
       })
     )
