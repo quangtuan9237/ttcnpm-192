@@ -19,6 +19,15 @@ export class OrderService {
     return result;
   }
 
+  // getOders() {
+  //   return this.db.list('/orders')
+  // }
+
+  getOrdersByUser(userId: string) {
+    return this.db.list('/orders', query => query.orderByChild('userId').equalTo(userId))
+    .valueChanges(); 
+  }
+
   getAll(){
     return this.db.object('/orders').valueChanges().pipe(
       map(test => {

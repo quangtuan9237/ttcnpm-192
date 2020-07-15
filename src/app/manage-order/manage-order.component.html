@@ -9,8 +9,7 @@
   </thead> 
   <tbody>
     <tr *ngFor="let key of orders | keyvalue">
-      <!-- <td>{{ order.shipping.name }}</td> -->
-      <!-- <td>{{order.userId}}</td> -->
+      <td>{{key.value.userName}}</td>
       
       <td>{{ key.value.datePlaced | date}}</td>
       <td>

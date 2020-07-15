@@ -22,6 +22,7 @@
 
     <mat-menu #menu="matMenu">
         <ng-container *ngIf='user'>
+            <button routerLink='/my-order' mat-menu-item>My Orders</button>
             <button *ngIf='user.isAdmin' routerLink='/{{user.role}}/products' mat-menu-item>Manage Products</button>
             <button *ngIf='user.isAdmin' routerLink='/{{user.role}}/orders' mat-menu-item>Manage Orders</button>
             <button *ngIf='user.isAdmin' routerLink='/{{user.role}}/coupons' mat-menu-item>Manage Coupons</button>

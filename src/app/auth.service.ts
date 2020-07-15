@@ -13,6 +13,7 @@ import {of} from 'rxjs'
   providedIn: 'root'
 })
 export class AuthService {
+  [x: string]: any;
   user$: Observable<firebase.User>;
 
   constructor(

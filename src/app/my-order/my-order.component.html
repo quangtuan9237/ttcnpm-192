@@ -1,1 +1,19 @@
-<p>my-order works!</p>
+<h1>Orders</h1>
+<table class="table" *ngIf="orders$ | async as orders">
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead> 
+  <tbody>
+    <tr *ngFor="let key of orders | keyvalue">
+      <td>{{key.value.userName}}</td>
+      <td>{{ key.value.datePlaced | date}}</td>
+      <td>
+        <a href="#">View</a>
+      </td>
+    </tr>
+  </tbody> 
+</table> 
