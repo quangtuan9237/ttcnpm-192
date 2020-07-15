@@ -11,6 +11,7 @@ export class ManageOrderComponent implements OnInit {
 
   constructor(private orderService: OrderService) { 
     this.orders$ = this.orderService.getAll();
+    // console.log(this.orders$);
   }
 
   ngOnInit(): void {

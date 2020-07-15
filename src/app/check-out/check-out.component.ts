@@ -13,6 +13,7 @@ import { ShoppingCartService } from '../shopping-cart.service';
   styleUrls: ['./check-out.component.scss']
 })
 export class CheckOutComponent implements OnInit, OnDestroy {
+  // cart
   cart$ : Observable<ShoppingCart>
   cart : ShoppingCart
   sub: Subscription

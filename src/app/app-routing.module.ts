@@ -1,3 +1,4 @@
+import { AppCoupon } from './models/app-coupon';
 import { ManageOrderComponent } from './manage-order/manage-order.component';
 import { OrderSucessComponent as OrderSuccessComponent } from './order-sucess/order-sucess.component';
 import { CheckOutComponent } from './check-out/check-out.component';
@@ -12,8 +13,9 @@ import { MyOrderComponent } from './my-order/my-order.component';
 import { AuthGuard } from './auth-guard.service';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ApplyCouponComponent } from './apply-coupon/apply-coupon.component';
 
 
 const routes: Routes = [
@@ -30,6 +32,7 @@ const routes: Routes = [
   { path: 'admin/coupons', component: ManageCouponComponent, canActivate: [AuthGuard, AdminAuthGuard] },
   { path: 'admin/coupons/new', component: ManageCouponFormComponent, canActivate: [AuthGuard, AdminAuthGuard] },
   { path: 'admin/coupons/:id', component: ManageCouponFormComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+  {path: 'apply-coupon', component: ApplyCouponComponent },
 ];
 
 @NgModule({

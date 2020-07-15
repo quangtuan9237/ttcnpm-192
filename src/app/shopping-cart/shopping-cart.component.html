@@ -1,9 +1,13 @@
 <div class="container">
 <h1>Shopping Cart</h1>
 <ng-container *ngIf="cart$ | async as cart">
-<p>You have {{ cart.totalItemCount }} items in your shopping cart.</p>
-<app-cart-table [allow-action]='true' [shopping-cart]="cart" [displayed-columns]="displayedColumns"></app-cart-table>
-<button id="clear-btn" (click)="clearCart()" mat-stroked-button color="warn">Clear Shopping Cart</button>
-<button routerLink="/check-out"mat-raised-button color="primary">Checkout</button>
+<p>
+    You have {{ cart.totalItemCount }} items in your shopping cart.
+    <button *ngIf="cart.items.length" id="clear-btn" (click)="clearCart()" mat-stroked-button color="warn">Clear Shopping Cart</button>
+</p>
+<app-cart-table *ngIf="cart.items.length" [allow-action]='true' [shopping-cart]="cart" [displayed-columns]="displayedColumns"></app-cart-table>
+
+<button *ngIf="cart.items.length" routerLink="/check-out"mat-raised-button color="primary">Checkout</button>
+<button *ngIf="!cart.items.length" routerLink="/"mat-raised-button color="accent">Back</button>
 </ng-container>
 </div>

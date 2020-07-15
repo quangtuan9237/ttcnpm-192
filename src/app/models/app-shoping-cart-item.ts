@@ -6,7 +6,8 @@ export class ShoppingCartItem{
    price: number = 0;
    category: string = "";
    imageUrl: string = "";
-   quantity: number
+   quantity: number;
+   // userName: string
 
    constructor(item){
       Object.assign(this, item);
