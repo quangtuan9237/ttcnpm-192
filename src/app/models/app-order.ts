@@ -4,12 +4,15 @@ export class AppOrder{
    userName: string;
    datePlaced: number;
    items: any[];
-   
+   totalItemCount: number;
+   totalPrice: number
 
-   constructor(userId: string, userName: string, shoppingCart: ShoppingCart){
+   constructor(userId: string, userName: string, totalItemCount, totalPrice, shoppingCart: ShoppingCart){
       this.userId = userId;
       this.userName = userName;
       this.datePlaced = new Date().getTime();
+      this.totalItemCount = totalItemCount;
+      this.totalPrice = totalPrice;
       this.items = shoppingCart.items.map(i => {
         return {
           // userName: i.userName,
