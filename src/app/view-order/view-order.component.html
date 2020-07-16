@@ -1,0 +1,9 @@
+<div class="container">
+    <h1>Detail Order</h1>
+    
+    <ng-container *ngIf="orders$ | async as order">
+        <p>You have {{ totalPrice(order.items)}} items in your shopping cart.</p>
+        <app-cart-table [shopping-cart]="order" [displayed-columns]="displayedColumns"></app-cart-table>
+        <!-- <button (click)='placeOrder()' mat-raised-button color="primary">Confirm</button> -->
+    </ng-container>
+</div>

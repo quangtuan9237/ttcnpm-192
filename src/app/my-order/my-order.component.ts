@@ -21,34 +21,21 @@ export class MyOrderComponent implements OnInit {
     private authService: AuthService,
     private orderService: OrderService
   ) { 
-    // lam nhu nay thi duoc, de vay nhe :) show cai order coponent di :/ the hell
-    // this.orders$ = authService.user$.pipe(switchMap(u => orderService.getOrdersByUser(u.uid)));
-    // chi lam nhu vay no se subscribe 2 lan do maybe :/ hoac no se bi loi vi no' da subscribe roi :/
+
     
 
   }
 
-  // ngOnInit(): void {
-  // }
 
   async ngOnInit(): Promise<void> {
-    //  let uid = await (await this.authService.getUser()).uid
-    // console.log("nguyet");  
-    // ko co chuyen nay dau :/ de tren nay duoi cung v a :/
+
     this.orders$ = this.authService.user$.pipe(switchMap(u => this.orderService.getOrdersByUser(u.uid)));
     console.log(this.orders$)
-    // troi!
     this.orders$.subscribe(orders =>{
-      
-      // O?
-      this.dataSource = new MatTableDataSource(orders)
+      this.dataSource = new MatTableDataSource(orders) //ko can lam cai nay dau // cai nay la bang sorted
       this.dataSource.sort = this.sort;
     })
 
-
-    // lam nhu vay thi khi logout o tab khac, tab nay se ko duoc cap nhat :)
-    // let user = await this.authService.getUser()
-    // this.orders$ = this.orderService.getOrdersByUser(user.uid)
   }
 
 }

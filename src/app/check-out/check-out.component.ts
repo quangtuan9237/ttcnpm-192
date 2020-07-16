@@ -21,6 +21,8 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   sub: Subscription
   userId: string
   userName: string
+  totalItems
+  totalAllPrice: number
   userSubscription: Subscription
   appUserSub: Subscription
 
@@ -52,9 +54,12 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   async placeOrder(){
     let userId = (await this.auth.getUser()).uid;
     this.userName = this.user.name;
+    // this.totalItems = this.cart.totalItemCount();
+    // this.totalAllPrice = this.cart.totalPrice();
+
+
     let order = new AppOrder(userId, this.userName, this.cart);
     let result = this.orderService.create(order);
     this.router.navigate(['/order-success', (await result).key]);
-    // console.log(result)
   }
 }

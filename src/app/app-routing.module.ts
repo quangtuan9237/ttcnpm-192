@@ -1,3 +1,4 @@
+import { ViewOrderComponent } from './view-order/view-order.component';
 import { AppCoupon } from './models/app-coupon';
 import { ManageOrderComponent } from './manage-order/manage-order.component';
 import { OrderSucessComponent as OrderSuccessComponent } from './order-sucess/order-sucess.component';
@@ -22,7 +23,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'my-order', component: MyOrderComponent, canActivate: [AuthGuard]},
-  {path: 'my-order/:id', component: CheckOutComponent, canActivate: [AuthGuard]},
+  {path: 'my-order/:id', component: ViewOrderComponent, canActivate: [AuthGuard]},
   {path: 'admin/products', component: ManageProductComponent, canActivate: [AuthGuard, AdminAuthGuard]},
   {path: 'admin/products/new', component: ManageProductFormComponent, canActivate: [AuthGuard, AdminAuthGuard]},
   {path: 'admin/products/:id', component: ManageProductFormComponent, canActivate: [AuthGuard, AdminAuthGuard]},

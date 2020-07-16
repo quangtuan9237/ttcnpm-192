@@ -23,6 +23,7 @@ export class ShoppingCartService {
       }))
   }
 
+
   async addToCart(product: AppProduct){
     let cart_id = await this.getOrCreateCartId();
     let item = this.getItem(cart_id, product.key)

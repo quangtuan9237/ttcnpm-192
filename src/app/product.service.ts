@@ -26,11 +26,14 @@ export class ProductService {
     return this.db.database.ref().update(payload);
   }
 
+  // get products by user ne,
+  // no vao duong dan~ /users/<user_id>/products, de lay ra 1 danh sach , sau do moi mot key trong cai list product do
+  // se~ duoc lay 
   getAllVendor(user_id){
     return this.db.object(`/users/${user_id}/products`).valueChanges().pipe(
       switchMap((setProducts) => {
         let listId = Object.keys(setProducts);
-
+// ung' voi moi~ 1 id, se~ goi ham this.get(id)
         return zip(...listId.map((id) => this.get(id)))
       })
     )
@@ -44,9 +47,10 @@ export class ProductService {
     )
   }
 
+
   get(id){
-    return this.db.object('/products/' + id).snapshotChanges().pipe(
-      map(snapshot => new AppProduct(snapshot.key, snapshot.payload.val()))
+    return this.db.object('/products/' + id).snapshotChanges().pipe( 
+      map(snapshot => new AppProduct(snapshot.key, snapshot.payload.val())) 
     )
   }
 

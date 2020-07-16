@@ -1,3 +1,4 @@
+import { ViewOrderComponent } from './view-order/view-order.component';
 import { ShoppingCartService } from './shopping-cart.service';
 import { ProductService } from './product.service';
 import { AuthService } from './auth.service';
@@ -55,6 +56,8 @@ import { ApplyCouponComponent } from './apply-coupon/apply-coupon.component';
     ManageCouponFormComponent,
     CouponsComponent,
     ApplyCouponComponent,
+    ViewOrderComponent
+    // yeah cai nay e moi them vao ma :/ chi doi ten no mat di ? hay gi ? a chac luc nay reset lai :)
   ],
   imports: [
     BrowserModule,
