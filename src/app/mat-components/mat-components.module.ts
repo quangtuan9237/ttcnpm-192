@@ -9,6 +9,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   exports:[
@@ -21,7 +22,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatSelectModule,
     MatTableModule,
     MatBadgeModule,
-    MatListModule
+    MatListModule,
+    MatIconModule
   ]
 })
 export class MatComponentsModule { }

@@ -13,8 +13,6 @@ export class CategoriesService {
   ) { }
 
   getAll(){
-    // return this.db.list("/categories").valueChanges() as Observable<string[]>;
-
     return this.db.list("/categories").snapshotChanges().pipe(
       map(changes => changes.map(c => {
         let value:Object = c.payload.val();

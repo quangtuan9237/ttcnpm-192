@@ -4,7 +4,7 @@
 </div>
 
 <div id="products-list">
-    <div class='product-item' *ngFor="let p of products$ | async">
+    <div class='product-item' *ngFor="let p of displayProducts">
         <app-product-card [shopping-cart]='shoppingCart' [show-action]='true' [product]='p'>
         </app-product-card>
     </div>
