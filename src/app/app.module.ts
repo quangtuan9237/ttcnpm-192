@@ -31,6 +31,7 @@ import { ManageOrderComponent } from './manage-order/manage-order.component';
 import { ManageCouponComponent } from './manage-coupon/manage-coupon.component';
 import { ManageCouponFormComponent } from './manage-coupon-form/manage-coupon-form.component';
 import { CouponsComponent } from './coupons/coupons.component';
+import { FilterProductsComponent } from './filter-products/filter-products.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { CouponsComponent } from './coupons/coupons.component';
     ManageCouponComponent,
     ManageCouponFormComponent,
     CouponsComponent,
+    FilterProductsComponent,
   ],
   imports: [
     BrowserModule,

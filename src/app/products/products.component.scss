@@ -1,4 +1,22 @@
 .container{
-    width: 80%;
-    margin: auto;
+    overflow: hidden;
+    width: 90%;
+    margin:auto;
+}
+
+#products-filter{
+    float: left;
+    width: 22%;
+}
+
+#products-list{
+    width: 75%;
+    float: right;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-item{
+    margin: 2%;
 }

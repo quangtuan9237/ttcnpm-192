@@ -1,0 +1,31 @@
+<div class='filter-box'>
+    <p class='filter-name'>Sort</p>
+    <mat-form-field appearance="fill">
+    <mat-label>Select an option</mat-label>
+    <mat-select [(value)]="sortType">
+        <mat-option value="0">None</mat-option>
+        <mat-option value="1">Price: Low to High</mat-option>
+        <mat-option value="2">Price: High to Low</mat-option>
+        <mat-option value="3">Alphabetical</mat-option>
+    </mat-select>
+    </mat-form-field>
+</div>
+
+<div class='filter-box'>
+<p class='filter-name'>Vendors</p>
+<mat-selection-list #vendors>
+    <mat-list-option *ngFor="let shoe of typesOfShoes">
+      {{shoe}}
+    </mat-list-option>
+</mat-selection-list>
+</div>
+
+<div class='filter-box' *ngIf="categories$ | async as cat">
+<p class='filter-name'>Categories</p>
+
+<mat-selection-list #categories>
+    <mat-list-option *ngFor="let category of cat" [value]="category.key">
+      {{category.value}}
+    </mat-list-option>
+</mat-selection-list>
+</div>
