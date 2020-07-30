@@ -5,9 +5,11 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
-import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatListModule} from '@angular/material/list';
+import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   exports:[
@@ -19,7 +21,9 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatGridListModule,
     MatSelectModule,
     MatTableModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatListModule,
+    MatIconModule
   ]
 })
 export class MatComponentsModule { }

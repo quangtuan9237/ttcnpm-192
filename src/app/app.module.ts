@@ -33,6 +33,7 @@ import { ManageCouponComponent } from './manage-coupon/manage-coupon.component';
 import { ManageCouponFormComponent } from './manage-coupon-form/manage-coupon-form.component';
 import { CouponsComponent } from './coupons/coupons.component';
 import { ApplyCouponComponent } from './apply-coupon/apply-coupon.component';
+import { FilterProductsComponent } from './filter-products/filter-products.component';
 
 
 @NgModule({
@@ -56,8 +57,8 @@ import { ApplyCouponComponent } from './apply-coupon/apply-coupon.component';
     ManageCouponFormComponent,
     CouponsComponent,
     ApplyCouponComponent,
-    ViewOrderComponent
-    // yeah cai nay e moi them vao ma :/ chi doi ten no mat di ? hay gi ? a chac luc nay reset lai :)
+    ViewOrderComponent,
+    FilterProductsComponent,
   ],
   imports: [
     BrowserModule,

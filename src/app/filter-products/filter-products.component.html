@@ -1,0 +1,43 @@
+<div class='filter-box'>
+    <mat-form-field class="example-form-field">
+    <mat-label>Search</mat-label>
+    <input matInput type="text" [(ngModel)]='searchText' #search (keyup)="onChangeSearch(search.value)">
+    <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" 
+    (click)="searchText=''; onChangeSearch('')">
+        <mat-icon>close</mat-icon>
+    </button>
+    </mat-form-field>
+</div>
+
+<div class='filter-box'>
+    <p class='filter-name'>Sort</p>
+    <mat-form-field appearance="fill">
+    <mat-label>Select an option</mat-label>
+    <mat-select (selectionChange)="onChangeSortType()" [(value)]="sortType">
+        <mat-option value="none">None</mat-option>
+        <mat-option value="PL2H">Price: Low to High</mat-option>
+        <mat-option value="PH2L">Price: High to Low</mat-option>
+        <mat-option value="Alphabet">Alphabetical</mat-option>
+    </mat-select>
+    </mat-form-field>
+</div>
+
+<div class='filter-box' *ngIf="vendors$ | async as vendors">
+<p class='filter-name'>Vendors</p>
+<mat-selection-list #ven (selectionChange)="onChangeVendors(ven.selectedOptions.selected)">
+    <mat-list-option *ngFor="let vendor of vendors" [value]="vendor.key">
+      {{vendor.name}}
+    </mat-list-option>
+</mat-selection-list>
+</div>
+
+<div class='filter-box' *ngIf="categories$ | async as cat">
+<p class='filter-name'>Categories</p>
+
+<mat-selection-list #categories (selectionChange)="onChangeCategories(categories.selectedOptions.selected)">
+    <mat-list-option *ngFor="let category of cat" [value]="category.key">
+      {{category.value}}
+    </mat-list-option>
+</mat-selection-list>
+
+</div>

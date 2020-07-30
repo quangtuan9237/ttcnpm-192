@@ -1,7 +1,7 @@
 <div class="container">
   <button mat-raised-button color="primary" routerLink='new'>New Product</button>
 
-<table id='product-table' mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+<table *ngIf='dataSource' id='product-table' mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
     <!-- Title Column -->
     <ng-container matColumnDef="title">

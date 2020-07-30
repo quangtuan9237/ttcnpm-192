@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from './../product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { take } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { CategoriesService } from '../categories.service';
 
 @Component({
   selector: 'app-manage-product-form',
@@ -12,6 +13,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./manage-product-form.component.scss']
 })
 export class ManageProductFormComponent implements OnInit, OnDestroy {
+  categories$: Observable<any>
   product_id: String
   user: firebase.User
   product = {} as AppProduct
@@ -21,7 +23,8 @@ export class ManageProductFormComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private categoriesService: CategoriesService
   ) { 
 
     this.product_id = this.route.snapshot.paramMap.get('id');
@@ -32,6 +35,8 @@ export class ManageProductFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.categories$ = this.categoriesService.getAll();
+
     this.userSubscription = this.auth.user$.subscribe(user => {
       this.user = user;
     })
