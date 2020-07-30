@@ -14,7 +14,7 @@ import { ShoppingCartService } from '../shopping-cart.service';
 })
 export class CheckOutComponent implements OnInit, OnDestroy {
   cart$ : Observable<ShoppingCart>
-  cart : ShoppingCart
+  shoppingCart : ShoppingCart
   sub: Subscription
 
   displayedColumns = ['thumbnail', 'title', 'quantity', 'total_price'];
@@ -28,9 +28,10 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit(){
-    this.cart$ = await this.cartService.get()
-    this.sub = this.cart$.subscribe(cart => {
-      this.cart = cart;
+    this.cart$ = await this.cartService.get();
+    this.sub = this.cart$.subscribe(c => {
+      this.shoppingCart = c;
+      // console.log("cart", this.shoppingCart)
     })
   }
 
@@ -40,7 +41,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
 
   async placeOrder(){
     let userId = (await this.auth.getUser()).uid;
-    let order = new AppOrder(userId, this.cart);
+    let order = new AppOrder(userId, this.shoppingCart);
     let result = this.orderService.create(order);
     this.router.navigate(['/order-success', (await result).key])
   }

@@ -1,3 +1,4 @@
+import { CategoriesService } from './../categories.service';
 import { AuthService } from './../auth.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs/operators';
@@ -20,6 +21,7 @@ export class ManageProductComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private auth: AuthService,
+    private categoriesService: CategoriesService
   ) {
 
   }

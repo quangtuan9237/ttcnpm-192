@@ -33,7 +33,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       let vendors = JSON.parse(params.get("vendors")) as Array<any>;
       let sortType = params.get("sortType") as string;
       let searchText = params.get("searchText") as string;
-      searchText = searchText.trim().toLocaleLowerCase();
+      searchText = searchText?.trim().toLocaleLowerCase();
 
       let filteredProducts = [...this.products];
       filteredProducts = (searchText) ? filteredProducts.filter(p => p.title.toLocaleLowerCase().includes(searchText)) : filteredProducts;
@@ -41,17 +41,17 @@ export class ProductsComponent implements OnInit, OnDestroy {
       filteredProducts = (vendors && vendors.length != 0) ? filteredProducts.filter(p => vendors.includes(p.owner)) : filteredProducts;
       
       if(sortType == "PL2H"){
-        console.log("PL2H")
+        // console.log("PL2H")
         filteredProducts.sort((a,b) => {
           return a.price - b.price
         })
       }else if(sortType == "PH2L"){
-        console.log("PH2L")
+        // console.log("PH2L")
         filteredProducts.sort((a,b) => {
           return b.price - a.price
         })
       }else if(sortType == "Alphabet"){
-        console.log("alphabet")
+        // console.log("alphabet")
         filteredProducts.sort((a,b) => {
           return a.title > b.title ? 1 : -1
         })
@@ -59,7 +59,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
       this.displayProducts = filteredProducts;
 
-      console.log("leght:",this.displayProducts.length);
+      // console.log("leght:",this.displayProducts.length);
     })
   }
 
