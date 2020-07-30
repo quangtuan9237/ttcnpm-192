@@ -7,7 +7,7 @@
 </p>
 <app-cart-table *ngIf="cart.items.length" [allow-action]='true' [shopping-cart]="cart" [displayed-columns]="displayedColumns"></app-cart-table>
 
-<button *ngIf="cart.items.length" routerLink="/check-out"mat-raised-button color="primary">Checkout</button>
-<button *ngIf="!cart.items.length" routerLink="/"mat-raised-button color="accent">Back</button>
+<button class='action-btn' *ngIf="cart.items.length" routerLink="/check-out"mat-raised-button color="primary">Checkout</button>
+<button class='action-btn' *ngIf="!cart.items.length" routerLink="/"mat-raised-button color="accent">Back</button>
 </ng-container>
 </div>

@@ -3,6 +3,7 @@ import { AppUser } from './../models/app-user';
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { windowWhen } from 'rxjs/operators';
+import { NavigationExtras, ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'nav-bar',
@@ -15,7 +16,9 @@ export class NavBarComponent implements OnInit {
 
   constructor(
     public auth: AuthService,
-    private cart: ShoppingCartService
+    private cart: ShoppingCartService,
+    private route: ActivatedRoute,
+    private router: Router
     ) {
     this.auth.appUser$.subscribe((user) => this.user = user);
   }
@@ -26,6 +29,18 @@ export class NavBarComponent implements OnInit {
 
   logout() {
     this.auth.logout();
+  }
+
+  onChangeSearch(text){
+    let navigationExtras: NavigationExtras = {
+      relativeTo: this.route,
+      queryParams: {
+        searchText: text
+      },
+      queryParamsHandling: 'merge'
+    }
+    
+    this.router.navigate(['/'], navigationExtras)
   }
 
 }

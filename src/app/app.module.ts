@@ -34,6 +34,8 @@ import { ManageCouponFormComponent } from './manage-coupon-form/manage-coupon-fo
 import { CouponsComponent } from './coupons/coupons.component';
 import { ApplyCouponComponent } from './apply-coupon/apply-coupon.component';
 import { FilterProductsComponent } from './filter-products/filter-products.component';
+import { ContactComponent } from './contact/contact.component';
+import { FavoriteProductComponent } from './favorite-product/favorite-product.component';
 
 
 @NgModule({
@@ -59,6 +61,8 @@ import { FilterProductsComponent } from './filter-products/filter-products.compo
     ApplyCouponComponent,
     ViewOrderComponent,
     FilterProductsComponent,
+    ContactComponent,
+    FavoriteProductComponent,
   ],
   imports: [
     BrowserModule,

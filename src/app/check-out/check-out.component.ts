@@ -14,18 +14,8 @@ import { AppUser } from '../models/app-user';
   styleUrls: ['./check-out.component.scss']
 })
 export class CheckOutComponent implements OnInit, OnDestroy {
-  // cart
-  user: AppUser;
-  cart$ : Observable<ShoppingCart>
   shoppingCart : ShoppingCart
   sub: Subscription
-  userId: string
-  userName: string
-  totalItems
-  totalAllPrice
-  userSubscription: Subscription
-  appUserSub: Subscription
-
   displayedColumns = ['thumbnail', 'title', 'quantity', 'total_price'];
 
   constructor(
@@ -37,8 +27,8 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit(){
-    this.cart$ = await this.cartService.get();
-    this.sub = this.cart$.subscribe(c => {
+    let cart$ = await this.cartService.get();
+    this.sub = cart$.subscribe(c => {
       this.shoppingCart = c;
       // console.log("cart", this.shoppingCart)
     })
@@ -46,13 +36,11 @@ export class CheckOutComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     this.sub.unsubscribe();
-    this.userSubscription.unsubscribe();
-    this.appUserSub.unsubscribe()
   }
 
   async placeOrder(){
     let userId = (await this.auth.getUser()).uid;
-    let order = new AppOrder(userId, this.shoppingCart);
+    let order = new AppOrder(userId, "Processing", this.shoppingCart);
     let result = this.orderService.create(order);
     this.router.navigate(['/order-success', (await result).key]);
   }

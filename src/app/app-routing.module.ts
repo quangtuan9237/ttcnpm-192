@@ -1,3 +1,5 @@
+import { FavoriteProductComponent } from './favorite-product/favorite-product.component';
+import { ContactComponent } from './contact/contact.component';
 import { ViewOrderComponent } from './view-order/view-order.component';
 import { AppCoupon } from './models/app-coupon';
 import { ManageOrderComponent } from './manage-order/manage-order.component';
@@ -36,6 +38,8 @@ const routes: Routes = [
   { path: 'admin/coupons/new', component: ManageCouponFormComponent, canActivate: [AuthGuard, AdminAuthGuard] },
   { path: 'admin/coupons/:id', component: ManageCouponFormComponent, canActivate: [AuthGuard, AdminAuthGuard] },
   {path: 'apply-coupon', component: ApplyCouponComponent },
+  {path: 'lien-he', component: ContactComponent },
+  {path: 'favorite-product', component: FavoriteProductComponent },
 ];
 
 @NgModule({

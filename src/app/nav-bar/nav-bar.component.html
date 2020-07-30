@@ -1,20 +1,14 @@
 <mat-toolbar color="primary">
-    <button mat-button routerLink='/'>BK FOOD COURT</button>
-
     <!-- This fills the remaining space of the current row -->
     <span class="example-fill-remaining-space"></span>
-    <ng-container *ngIf='user'>
-        <span *ngIf='user.isAdmin' class="example-fill-remaining-space">HELLO {{user.name}}</span>
-    </ng-container>
     
-    <!-- [matBadge]="cart$ | async ; let cart.totalItemCount" matBadgeColor="accent" -->
     <button
-    class="shopping-cart-btn"
-    mat-button routerLink='/shopping-cart'>
-    Shopping Cart
-    <span *ngIf="cart$ | async ; let cart" [matBadge]="cart.totalItemCount" matBadgeColor="accent" matBadgeOverlap="false"></span>
+    mat-button routerLink='/lien-he'>
+    Liên Hệ
+    <mat-icon>location_on</mat-icon>
     </button>
-  
+
+    
     <ng-template #noLogin>
         <button mat-raised-button color="primary" routerLink='/login'>Login</button>
     </ng-template>
@@ -31,4 +25,34 @@
         </ng-container>
         <button mat-menu-item (click)='logout()'>Logout</button>
     </mat-menu>
+</mat-toolbar>
+
+<mat-toolbar color="primary">
+    <button id='home-btn' mat-button routerLink='/'>BK FOOD COURT 
+    <mat-icon>fastfood</mat-icon>
+    </button>
+
+    <!-- This fills the remaining space of the current row -->
+    <mat-form-field class="example-form-field example-fill-remaining-space">
+    <mat-label>Search</mat-label>
+    <input matInput type="text" [(ngModel)]='searchText' #search (keyup)="onChangeSearch(search.value)">
+    <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" 
+    (click)="searchText=''; onChangeSearch('')">
+        <mat-icon>close</mat-icon>
+    </button>
+    </mat-form-field>
+    
+    <!-- [matBadge]="cart$ | async ; let cart.totalItemCount" matBadgeColor="accent" -->
+    <button
+    class="shopping-cart-btn"
+    mat-button routerLink='/shopping-cart'>
+    <mat-icon>shopping_cart</mat-icon>
+    <span *ngIf="cart$ | async ; let cart" [matBadge]="cart.totalItemCount" matBadgeColor="accent" matBadgeOverlap="false"></span>
+    </button>
+
+    <button
+    mat-button routerLink='/favorite-product'>
+    <mat-icon>favorite</mat-icon>
+    </button>
+
 </mat-toolbar>

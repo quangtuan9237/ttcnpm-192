@@ -21,7 +21,6 @@ export class ManageProductComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private auth: AuthService,
-    private categoriesService: CategoriesService
   ) {
 
   }

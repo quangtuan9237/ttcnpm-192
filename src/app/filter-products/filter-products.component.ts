@@ -31,18 +31,6 @@ export class FilterProductsComponent implements OnInit{
     // this.vendors$.subscribe(data => console.log(data))
   }
 
-  onChangeSearch(text){
-    let navigationExtras: NavigationExtras = {
-      relativeTo: this.route,
-      queryParams: {
-        searchText: text
-      },
-      queryParamsHandling: 'merge'
-    }
-    
-    this.router.navigate([], navigationExtras)
-  }
-
   onChangeSortType(){
     let navigationExtras: NavigationExtras = {
       relativeTo: this.route,
