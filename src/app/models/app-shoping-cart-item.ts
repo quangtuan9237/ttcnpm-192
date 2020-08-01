@@ -6,6 +6,7 @@ export class ShoppingCartItem{
    price: number = 0;
    category: string = "";
    imageUrl: string = "";
+   vendorId: string = "";
    quantity: number;
    // userName: string
 

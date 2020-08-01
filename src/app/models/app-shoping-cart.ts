@@ -4,8 +4,11 @@ import { ShoppingCartItem } from './app-shoping-cart-item';
 export class ShoppingCart{
    items: ShoppingCartItem[] = []
    item_set: {[key: string]: ShoppingCartItem} = {}
+   vendorId: string
 
    constructor(objectShoppingCart){
+      this.vendorId = objectShoppingCart.vendorId;
+
       let items = objectShoppingCart.items
       if(!items) return;
       this.item_set = items;

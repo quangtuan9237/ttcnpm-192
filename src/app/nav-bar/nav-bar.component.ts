@@ -2,8 +2,9 @@ import { ShoppingCartService } from './../shopping-cart.service';
 import { AppUser } from './../models/app-user';
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
-import { windowWhen } from 'rxjs/operators';
 import { NavigationExtras, ActivatedRoute, Router } from '@angular/router';
+import { MasterCart } from '../models/app-master-cart';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'nav-bar',
@@ -12,7 +13,8 @@ import { NavigationExtras, ActivatedRoute, Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
   user: AppUser;
-  cart$
+  searchText: string;
+  cart$: Observable<MasterCart>;
 
   constructor(
     public auth: AuthService,

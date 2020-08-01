@@ -7,7 +7,12 @@
 </p>
 
 <div class="shopping-cart" *ngFor="let cart of masterCart.cartList">
-<app-cart-table *ngIf="cart.items.length" [allow-action]='true' [shopping-cart]="cart" [displayed-columns]="displayedColumns"></app-cart-table>
+<app-cart-table *ngIf="cart.items.length" 
+(selected)="addVendor($event)" 
+(removed)="removeVendor($event)" 
+[allow-action]='true' 
+[shopping-cart]="cart" 
+[displayed-columns]="displayedColumns"></app-cart-table>
 </div>
 
 <!-- <button class='action-btn' *ngIf="cart.items.length" routerLink="/check-out"mat-raised-button color="primary">Checkout</button>
