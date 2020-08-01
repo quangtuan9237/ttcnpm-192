@@ -35,9 +35,9 @@
     <!-- This fills the remaining space of the current row -->
     <mat-form-field class="example-form-field example-fill-remaining-space">
     <mat-label>Search</mat-label>
-    <input matInput type="text" [(ngModel)]='searchText' #search (keyup)="onChangeSearch(search.value)">
-    <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" 
-    (click)="searchText=''; onChangeSearch('')">
+    <input matInput type="text" #search (keyup)="onChangeSearch(search.value)">
+    <button mat-button *ngIf="search.value" matSuffix mat-icon-button aria-label="Clear" 
+    (click)="search.value=''; onChangeSearch('')">
         <mat-icon>close</mat-icon>
     </button>
     </mat-form-field>
