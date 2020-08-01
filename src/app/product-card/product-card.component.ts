@@ -1,3 +1,4 @@
+import { MasterCart } from './../models/app-master-cart';
 import { AppProduct } from './../models/app-product';
 import { ShoppingCart } from './../models/app-shoping-cart';
 import { ShoppingCartService } from './../shopping-cart.service';
@@ -12,7 +13,7 @@ import { DomSanitizer} from '@angular/platform-browser';
 export class ProductCardComponent implements OnInit {
   @Input('product') product: AppProduct;
   @Input('show-action') showAction = false;
-  @Input('shopping-cart') shoppingCart: ShoppingCart;
+  @Input('shopping-cart') masterCart: MasterCart;
 
   constructor(
     public domSanitizer: DomSanitizer,

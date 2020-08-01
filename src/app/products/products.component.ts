@@ -14,7 +14,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 export class ProductsComponent implements OnInit, OnDestroy {
   products: AppProduct[];
   displayProducts: AppProduct[];
-  shoppingCart;
+  masterCart;
   subProduct: Subscription
   subscription: Subscription
 
@@ -38,7 +38,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       let filteredProducts = [...this.products];
       filteredProducts = (searchText) ? filteredProducts.filter(p => p.title.toLocaleLowerCase().includes(searchText)) : filteredProducts;
       filteredProducts = (categories && categories.length != 0) ? filteredProducts.filter(p => categories.includes(p.category.toString())) : filteredProducts;
-      filteredProducts = (vendors && vendors.length != 0) ? filteredProducts.filter(p => vendors.includes(p.owner)) : filteredProducts;
+      filteredProducts = (vendors && vendors.length != 0) ? filteredProducts.filter(p => vendors.includes(p.vendorId)) : filteredProducts;
       
       if(sortType == "PL2H"){
         // console.log("PL2H")
@@ -65,7 +65,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   async ngOnInit(){
     this.subscription = (await this.cartService.get()).subscribe(cart => {
-      this.shoppingCart = cart
+      this.masterCart = cart
     })
   }
 

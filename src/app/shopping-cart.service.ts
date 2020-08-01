@@ -1,3 +1,4 @@
+import { MasterCart } from './models/app-master-cart';
 import { AppProduct } from './models/app-product';
 import { ShoppingCart } from './models/app-shoping-cart';
 import { map } from 'rxjs/operators';
@@ -19,14 +20,13 @@ export class ShoppingCartService {
     let id = await this.getOrCreateCartId();
     return this.db.object(`/shopping-carts/${id}`).valueChanges()
       .pipe(map(shoppingCart => {
-        return new ShoppingCart(shoppingCart)
+        return new MasterCart(shoppingCart)
       }))
   }
 
-
   async addToCart(product: AppProduct){
     let cart_id = await this.getOrCreateCartId();
-    let item = this.getItem(cart_id, product.key)
+    let item = this.getItem(product.vendorId, cart_id, product.key)
     
     if(!(await item.once("value")).exists()){
       item.update({
@@ -43,9 +43,9 @@ export class ShoppingCartService {
     })
   }
 
-  async removeFromCart(product){
+  async removeFromCart(product: AppProduct){
     let cart_id = await this.getOrCreateCartId();
-    let item = this.getItem(cart_id, product.key)
+    let item = this.getItem(product.vendorId, cart_id, product.key)
     
     item.once("value").then(data => {
       if(data.val().quantity == 1){
@@ -56,9 +56,9 @@ export class ShoppingCartService {
     })
   }
 
-  async clearCart(){
+  async clearCart(vendor_id){
     let id = await this.getOrCreateCartId();
-    this.db.object(`/shopping-carts/${id}/items`).remove();
+    this.db.object(`/shopping-carts/${id}/${vendor_id}/items`).remove();
   }
 
   private create(){
@@ -77,7 +77,8 @@ export class ShoppingCartService {
     return cart_id
   }
 
-  private getItem(cart_id, produc_id){
-    return this.db.database.ref(`/shopping-carts/${cart_id}/items/${produc_id}`);
+  private getItem(vendor_id, cart_id, produc_id){
+    // console.log(vendor_id)
+    return this.db.database.ref(`/shopping-carts/${cart_id}/${vendor_id}/items/${produc_id}`);
   }
 }

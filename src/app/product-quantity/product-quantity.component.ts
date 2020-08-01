@@ -1,3 +1,4 @@
+import { MasterCart } from './../models/app-master-cart';
 import { Component, OnInit, Input } from '@angular/core';
 import { AppProduct } from '../models/app-product';
 import { ShoppingCart } from '../models/app-shoping-cart';
@@ -10,7 +11,7 @@ import { ShoppingCartService } from '../shopping-cart.service';
 })
 export class ProductQuantityComponent implements OnInit {
   @Input('product') product: AppProduct;
-  @Input('shopping-cart') shoppingCart: ShoppingCart;
+  @Input('shopping-cart') masterCart: MasterCart;
 
   constructor(
     public cart: ShoppingCartService

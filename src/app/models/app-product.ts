@@ -4,7 +4,7 @@ export class AppProduct{
    price: number = 0;
    category: string = "";
    imageUrl: string = "";
-   owner: string = "";
+   vendorId: string = "";
 
    constructor(key, product){
       this.key = key
@@ -12,6 +12,6 @@ export class AppProduct{
       this.price = product.price;
       this.category = product.category;
       this.imageUrl = product.imageUrl;
-      this.owner = product.owner;
+      this.vendorId = product.owner;
    }
 };

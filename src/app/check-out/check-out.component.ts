@@ -1,3 +1,4 @@
+import { MasterCart } from './../models/app-master-cart';
 import { Router } from '@angular/router';
 import { AppOrder } from './../models/app-order';
 import { AuthService } from './../auth.service';
@@ -14,7 +15,7 @@ import { AppUser } from '../models/app-user';
   styleUrls: ['./check-out.component.scss']
 })
 export class CheckOutComponent implements OnInit, OnDestroy {
-  shoppingCart : ShoppingCart
+  shoppingCart : MasterCart
   sub: Subscription
   displayedColumns = ['thumbnail', 'title', 'quantity', 'total_price'];
 
@@ -39,9 +40,9 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   }
 
   async placeOrder(){
-    let userId = (await this.auth.getUser()).uid;
-    let order = new AppOrder(userId, "Processing", this.shoppingCart);
-    let result = this.orderService.create(order);
-    this.router.navigate(['/order-success', (await result).key]);
+    // let userId = (await this.auth.getUser()).uid;
+    // let order = new AppOrder(userId, "Processing", this.shoppingCart);
+    // let result = this.orderService.create(order);
+    // this.router.navigate(['/order-success', (await result).key]);
   }
 }
