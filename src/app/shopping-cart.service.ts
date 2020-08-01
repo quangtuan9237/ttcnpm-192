@@ -24,7 +24,8 @@ export class ShoppingCartService {
       }))
   }
 
-  async addToCart(product: AppProduct){
+  async addToCart(product: AppProduct){ 
+    // console.log(product);
     let cart_id = await this.getOrCreateCartId();
     let item = this.getItem(product.vendorId, cart_id, product.key)
     
@@ -34,6 +35,7 @@ export class ShoppingCartService {
         price: product.price,
         category: product.category,
         imageUrl: product.imageUrl,
+        vendorId: product.vendorId,
         quantity: 1});
       return;
     }

@@ -11,7 +11,7 @@ export class MasterCart{
       if(!keys) return;
 
       this.cartList = keys.map((key) => {
-         let itemObj = new ShoppingCart(objectMasterCart[key]);
+         let itemObj = new ShoppingCart({vendorId: key, ...objectMasterCart[key]});
 
          this.cartList_set[key] = itemObj
 

@@ -16,11 +16,6 @@ export class RoleService {
   }
 
   getAllVendor(){
-    return this.db.list("/roles/vendors").snapshotChanges().pipe(
-      map(changes => changes.map(c => {
-        let value:Object = c.payload.val();
-        return { key: c.key, ...value}
-      }))
-    )
+    return this.db.object("/roles/vendors").valueChanges();
   }
 }
