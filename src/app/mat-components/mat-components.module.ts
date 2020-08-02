@@ -11,6 +11,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   exports:[
@@ -25,7 +27,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatBadgeModule,
     MatListModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSnackBarModule,
+    MatDividerModule
   ]
 })
 export class MatComponentsModule { }

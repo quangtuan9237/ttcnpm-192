@@ -1,0 +1,16 @@
+<!-- <span class="example-pizza-party" *ngIf="masterCart">
+    <mat-divider></mat-divider>
+    Tổng tiền hàng:
+    <span id="price">{{totalPrice | currency:'VND':'symbol'}}</span>
+    <button mat-raised-button color="primary">Mua Hàng</button>
+</span> -->
+
+<mat-list class="example-pizza-party" *ngIf="masterCart">
+  <mat-list-item>Item 2</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>
+    Tổng tiền hàng:
+    <span id="price">{{totalPrice | currency:'VND':'symbol'}}</span>
+    <button mat-raised-button color="primary">Mua Hàng</button>
+  </mat-list-item>
+</mat-list>

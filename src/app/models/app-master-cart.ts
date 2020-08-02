@@ -26,6 +26,20 @@ export class MasterCart{
       return shoppingCart.getQuantity(product);
    }
 
+   getTotalPrice(vendorIds: string[]){
+      // console.log(vendorIds);
+      if(!vendorIds || vendorIds.length == 0) return 0;
+
+      let cartOfVendors = vendorIds.map(id => {
+         return this.cartList_set[id];
+      })
+      console.log(cartOfVendors);
+
+      return cartOfVendors.reduce((acc, i) => {
+         return acc + i.totalPrice
+      }, 0)
+   }
+
    get totalItemCount(){
       return this.cartList.reduce((acc, i) => acc + i.totalItemCount, 0)
    }
