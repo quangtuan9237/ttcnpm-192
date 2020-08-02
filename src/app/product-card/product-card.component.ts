@@ -4,6 +4,7 @@ import { ShoppingCart } from './../models/app-shoping-cart';
 import { ShoppingCartService } from './../shopping-cart.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
+// import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-product-card',

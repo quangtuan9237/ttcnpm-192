@@ -7,6 +7,7 @@ import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import {MatTooltipModule} from '@angular/material/tooltip';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -72,7 +73,8 @@ import { FavoriteProductComponent } from './favorite-product/favorite-product.co
     AngularFireAuthModule,
     BrowserAnimationsModule,
     MatComponentsModule,
-    FormsModule
+    FormsModule,
+    MatTooltipModule
   ],
   providers: [
     AuthService,
