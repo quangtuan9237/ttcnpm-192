@@ -3,8 +3,6 @@ import { MasterCart } from './../models/app-master-cart';
 import { Observable, Subscription } from 'rxjs';
 import { ShoppingCartService } from './../shopping-cart.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import { ShoppingCartSnackBarComponent } from './shopping-cart-snack-bar/shopping-cart-snack-bar.component';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -19,9 +17,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   constructor(
     private cartService: ShoppingCartService,
-    private _snackBar: MatSnackBar,
     private router: Router,
-    private activeRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) { 
   }
 
@@ -29,6 +26,14 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     this.sub = (await this.cartService.get()).subscribe(masterCart => {
       this.masterCart = masterCart;
       // this.openSnackBar();
+    })
+
+    this.sub = this.activatedRoute.queryParamMap.subscribe(paramMap => {
+      let selectedVendorIds = JSON.parse(paramMap.get('selectedVendorIds'))
+
+      if(selectedVendorIds){
+        this.selectedVendorIds = selectedVendorIds;
+      }
     })
   }
 
@@ -65,7 +70,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   updateRouteParams(){
     let navigationExtras: NavigationExtras = {
-      relativeTo: this.activeRoute,
+      relativeTo: this.activatedRoute,
       queryParams: {
         selectedVendorIds: JSON.stringify(this.selectedVendorIds)
       },

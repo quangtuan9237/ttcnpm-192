@@ -36,8 +36,6 @@ import { ApplyCouponComponent } from './apply-coupon/apply-coupon.component';
 import { FilterProductsComponent } from './filter-products/filter-products.component';
 import { ContactComponent } from './contact/contact.component';
 import { FavoriteProductComponent } from './favorite-product/favorite-product.component';
-import { ShoppingCartSnackBarComponent } from './shopping-cart/shopping-cart-snack-bar/shopping-cart-snack-bar.component';
-
 
 @NgModule({
   declarations: [
@@ -64,7 +62,6 @@ import { ShoppingCartSnackBarComponent } from './shopping-cart/shopping-cart-sna
     FilterProductsComponent,
     ContactComponent,
     FavoriteProductComponent,
-    ShoppingCartSnackBarComponent,
   ],
   imports: [
     BrowserModule,

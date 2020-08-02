@@ -33,7 +33,7 @@ export class MasterCart{
       let cartOfVendors = vendorIds.map(id => {
          return this.cartList_set[id];
       })
-      console.log(cartOfVendors);
+      // console.log(cartOfVendors);
 
       return cartOfVendors.reduce((acc, i) => {
          return acc + i.totalPrice
