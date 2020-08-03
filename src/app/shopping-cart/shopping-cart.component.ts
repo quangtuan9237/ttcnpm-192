@@ -38,15 +38,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    // this._snackBar.dismiss();
   }
-
-  // openSnackBar() {
-  //   this._snackBar.openFromComponent(ShoppingCartSnackBarComponent, {
-  //     duration: -1,
-  //     data: this.masterCart
-  //   });
-  // }
 
   async clearCart(){
     if(!confirm("Are you sure you want to clear the shopping cart?")) return;

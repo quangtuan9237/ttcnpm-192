@@ -1,7 +1,7 @@
+import { MasterCart } from './../models/app-master-cart';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppProduct } from '../models/app-product';
 import { Subscription } from 'rxjs';
-import { ProductService } from '../product.service';
 import { ShoppingCartService } from '../shopping-cart.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -14,16 +14,14 @@ import { FavoriteService } from '../favorite.service';
   styleUrls: ['./favorite-product.component.scss']
 })
 export class FavoriteProductComponent implements OnInit, OnDestroy {
-  products
+  products: AppProduct[];
   displayProducts: AppProduct[];
-  masterCart;
-  subProduct: Subscription
-  subscription: Subscription
+  masterCart: MasterCart;
   userId: string
+  subscription: Subscription
   subscription2: Subscription;
 
   constructor(
-    private productService: ProductService,
     private cartService: ShoppingCartService,
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
@@ -69,8 +67,6 @@ export class FavoriteProductComponent implements OnInit, OnDestroy {
       }
 
       this.displayProducts = filteredProducts;
-
-      // console.log("leght:",this.displayProducts.length);
     })
   }
 
@@ -90,8 +86,6 @@ export class FavoriteProductComponent implements OnInit, OnDestroy {
 
   async ngOnDestroy(){
     this.subscription.unsubscribe();
-    this.subProduct.unsubscribe();
-    // this.subscription2.unsubscribe();
+    this.subscription2.unsubscribe();
   }
-
 }

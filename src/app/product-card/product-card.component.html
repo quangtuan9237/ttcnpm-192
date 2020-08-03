@@ -1,5 +1,4 @@
 <mat-card class="example-card">
-
     <img *ngIf='product.imageUrl' mat-card-image [src]="domSanitizer.bypassSecurityTrustUrl(product.imageUrl)" >
     
     <mat-card-header>
@@ -13,14 +12,19 @@
     *ngIf="masterCart.getQuantity(product) === 0; else updateQuantity"
     (click)='addToCart(product)'>Add to Cart</button>
 
-    <button 
+    <!-- <button mat-mini-fab 
+    color="primary"
+    class="favorite-btn"
     *ngIf="userId"
-    class="iconFavorite" mat-mini-fab 
-    aria-label="Example icon-button with a heart icon"
-    (click)='addToFavorite(product)'
-    >
-        <mat-icon >favorite</mat-icon>
-    </button>
+    (click)='addToFavorite(product)'>
+        <mat-icon [class.favorite]="isFavorite" >favorite</mat-icon>
+    </button> -->
+    <mat-icon 
+    class="favorite-btn"
+    *ngIf="userId"
+    (click)='onClickFavorite(product)'
+    [class.favorite]="isFavorite"
+    >favorite</mat-icon>
 
     <ng-template #updateQuantity>
         <app-product-quantity [product]="product" [shopping-cart]="masterCart"></app-product-quantity>

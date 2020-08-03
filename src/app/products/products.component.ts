@@ -1,7 +1,8 @@
+import { FavoriteService } from './../favorite.service';
 import { AppProduct } from './../models/app-product';
 import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { ShoppingCartService } from './../shopping-cart.service';
 import { ProductService } from './../product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -15,6 +16,7 @@ import { AuthService } from '../auth.service';
 export class ProductsComponent implements OnInit, OnDestroy {
   products: AppProduct[];
   displayProducts: AppProduct[];
+  favorite$: Observable<unknown>;
   masterCart;
   subProduct: Subscription
   subscription: Subscription
@@ -25,8 +27,26 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private cartService: ShoppingCartService,
     private activatedRoute: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private favoriteService: FavoriteService
   ) {
+  }
+
+  async ngOnInit(){
+    this.subscription = (await this.cartService.get()).subscribe(cart => {
+      this.masterCart = cart
+    })
+
+    this.subscription2 = this.authService.user$.subscribe(user => {
+      this.favorite$ = this.favoriteService.getAllIds(user.uid);
+
+      if(user){
+        this.userId = user.uid;
+      }else{
+        this.userId = null;
+      }
+    })
+
     this.subProduct = this.productService.getAll().pipe(
       switchMap(products => {
         this.products = products;
@@ -62,22 +82,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
       }
 
       this.displayProducts = filteredProducts;
-
-      // console.log("leght:",this.displayProducts.length);
-    })
-  }
-
-  async ngOnInit(){
-    this.subscription = (await this.cartService.get()).subscribe(cart => {
-      this.masterCart = cart
-    })
-
-    this.subscription2 = this.authService.user$.subscribe(user => {
-      if(user){
-        this.userId = user.uid;
-      }else{
-        this.userId = null;
-      }
     })
   }
 

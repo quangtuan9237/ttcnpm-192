@@ -4,11 +4,7 @@ import { ShoppingCart } from './../models/app-shoping-cart';
 import { ShoppingCartService } from './../shopping-cart.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { AuthService } from '../auth.service';
 import { FavoriteService } from '../favorite.service';
-import { switchMap } from 'rxjs/operators';
-// import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-product-card',
@@ -20,6 +16,7 @@ export class ProductCardComponent implements OnInit {
   @Input('show-action') showAction = false;
   @Input('shopping-cart') masterCart: MasterCart;
   @Input('user-id') userId: string;
+  @Input('is-favorite') isFavorite: boolean = false;
 
   constructor(
     public domSanitizer: DomSanitizer,
@@ -38,9 +35,15 @@ export class ProductCardComponent implements OnInit {
     this.cartService.removeFromCart(product);
   }
 
-  async addToFavorite(product){
+  async onClickFavorite(product){
     if (this.userId) {
-      this.favoriteService.create(product.key, this.userId);
+      if(!this.isFavorite){
+        this.favoriteService.create(product.key, this.userId);
+      }else{
+        this.favoriteService.delete(product.key, this.userId);
+      }
+
+      this.isFavorite = !this.isFavorite;
     }
   }
 }
