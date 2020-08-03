@@ -1,8 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { OrderService } from '../order.service';
-import { switchMap } from 'rxjs/operators';
-import { AppOrder } from '../models/app-order';
 
 @Component({
   selector: 'app-order-table',
@@ -10,8 +6,8 @@ import { AppOrder } from '../models/app-order';
   styleUrls: ['./order-table.component.scss']
 })
 export class OrderTableComponent implements OnInit {
-  @Input('order') order: AppOrder;
-  @Input('displayed-columns') displayedColumns: AppOrder;
+  @Input('order') order
+  @Input('displayed-columns') displayedColumns
 
   constructor(
   ) { }
