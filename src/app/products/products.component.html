@@ -5,28 +5,15 @@
 
 <div id="products-list">
     <div class='product-item' *ngFor="let p of displayProducts">
-        
-    
-        <button class="iconFavorite" mat-mini-fab aria-label="Example icon-button with a heart icon">
-            <mat-icon cdk-visually-hidden>favorite</mat-icon>
-        </button>
-
-        <app-product-card [shopping-cart]='masterCart' [show-action]='true' [product]='p'>
+          
+        <app-product-card 
+        [shopping-cart]='masterCart' 
+        [show-action]='true' 
+        [product]='p'
+        [user-id]='userId'
+        >
         </app-product-card>
+        
     </div>
-
-    <!-- <mat-grid-list cols="3" rowHeight="5:6" gutterSize="20px">
-        <mat-grid-tile *ngFor="let p of products$ | async">
-            <div>
-                <app-product-card [shopping-cart]='shoppingCart' [show-action]='true' [product]='p'>
-                </app-product-card>
-            </div>
-        </mat-grid-tile>
-    </mat-grid-list> -->
 </div>
-
-<!-- <div *ngIf="shoppingCart">
-    test
-    <p *ngFor="let p of shoppingCart.items | keyvalue">{{ p.key }}</p>
-</div> -->
 </div>

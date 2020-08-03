@@ -4,6 +4,10 @@ import { ShoppingCart } from './../models/app-shoping-cart';
 import { ShoppingCartService } from './../shopping-cart.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AuthService } from '../auth.service';
+import { FavoriteService } from '../favorite.service';
+import { switchMap } from 'rxjs/operators';
 // import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
@@ -15,11 +19,13 @@ export class ProductCardComponent implements OnInit {
   @Input('product') product: AppProduct;
   @Input('show-action') showAction = false;
   @Input('shopping-cart') masterCart: MasterCart;
+  @Input('user-id') userId: string;
 
   constructor(
     public domSanitizer: DomSanitizer,
-    private cartService: ShoppingCartService
-  ) { }
+    private cartService: ShoppingCartService,
+    private favoriteService: FavoriteService,
+    ) { }
 
   ngOnInit(): void {
   }
@@ -30,5 +36,11 @@ export class ProductCardComponent implements OnInit {
 
   removeFromCart(product){
     this.cartService.removeFromCart(product);
+  }
+
+  async addToFavorite(product){
+    if (this.userId) {
+      this.favoriteService.create(product.key, this.userId);
+    }
   }
 }

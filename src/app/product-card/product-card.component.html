@@ -13,6 +13,15 @@
     *ngIf="masterCart.getQuantity(product) === 0; else updateQuantity"
     (click)='addToCart(product)'>Add to Cart</button>
 
+    <button 
+    *ngIf="userId"
+    class="iconFavorite" mat-mini-fab 
+    aria-label="Example icon-button with a heart icon"
+    (click)='addToFavorite(product)'
+    >
+        <mat-icon >favorite</mat-icon>
+    </button>
+
     <ng-template #updateQuantity>
         <app-product-quantity [product]="product" [shopping-cart]="masterCart"></app-product-quantity>
     </ng-template>

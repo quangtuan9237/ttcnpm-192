@@ -1,1 +1,19 @@
-<p>favorite-product works!</p>
+<div class="container">
+    <div id='products-filter'>
+        <app-filter-products></app-filter-products>
+    </div>
+    
+    <div id="products-list">
+        <div class='product-item' *ngFor="let p of displayProducts">
+              
+            <app-product-card 
+            [shopping-cart]='masterCart' 
+            [show-action]='true' 
+            [product]='p'
+            [user-id]='userId'
+            >
+            </app-product-card>
+            
+        </div>
+    </div>
+    </div>

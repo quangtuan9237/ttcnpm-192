@@ -6,6 +6,7 @@ import { MatComponentsModule } from './mat-components/mat-components.module';
 import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FavoriteService} from './favorite.service';
 
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { AppRoutingModule } from './app-routing.module';
@@ -37,6 +38,7 @@ import { ApplyCouponComponent } from './apply-coupon/apply-coupon.component';
 import { FilterProductsComponent } from './filter-products/filter-products.component';
 import { ContactComponent } from './contact/contact.component';
 import { FavoriteProductComponent } from './favorite-product/favorite-product.component';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,8 @@ import { FavoriteProductComponent } from './favorite-product/favorite-product.co
   providers: [
     AuthService,
     ProductService,
-    ShoppingCartService
+    ShoppingCartService,
+    FavoriteService
   ],
   bootstrap: [AppComponent]
 })

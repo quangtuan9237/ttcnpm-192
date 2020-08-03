@@ -47,11 +47,10 @@ export class ProductService {
     )
   }
 
-
   get(id){
     return this.db.object('/products/' + id).snapshotChanges().pipe( 
-      map(snapshot => new AppProduct(snapshot.key, snapshot.payload.val())) 
-    )
+      map(snapshot => {new AppProduct(snapshot.key, snapshot.payload.val()) }
+    ))
   }
 
   update(id, product){

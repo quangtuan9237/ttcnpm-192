@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { ShoppingCartService } from './../shopping-cart.service';
 import { ProductService } from './../product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-products',
@@ -17,11 +18,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
   masterCart;
   subProduct: Subscription
   subscription: Subscription
+  userId: string
+  subscription2: Subscription;
 
   constructor(
     private productService: ProductService,
     private cartService: ShoppingCartService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService
   ) {
     this.subProduct = this.productService.getAll().pipe(
       switchMap(products => {
@@ -67,10 +71,19 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.subscription = (await this.cartService.get()).subscribe(cart => {
       this.masterCart = cart
     })
+
+    this.subscription2 = this.authService.user$.subscribe(user => {
+      if(user){
+        this.userId = user.uid;
+      }else{
+        this.userId = null;
+      }
+    })
   }
 
   async ngOnDestroy(){
     this.subscription.unsubscribe();
     this.subProduct.unsubscribe();
+    this.subscription2.unsubscribe();
   }
 }
