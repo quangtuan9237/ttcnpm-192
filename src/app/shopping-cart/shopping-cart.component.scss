@@ -24,15 +24,15 @@
   
 }
 
-.mat-table-sticky {
-  border-top: 1px solid #e0e0e0;
-}
-
 .cart-table{
   width: 100%;
 
+  .mat-table-sticky {
+    border-top: 1px solid #e0e0e0;
+  }
+
   th.mat-header-cell, td.mat-cell{
-    padding-top: 20px;
+    padding-bottom: 20px;
     border: none;
   }
 
@@ -49,8 +49,8 @@
     font-weight: bolder;
     color: #673ab7;
   }
-}
-
-.buy-btn{
-  margin-left: 20px;
+  
+  .buy-btn{
+    margin-left: 20px;
+  }
 }

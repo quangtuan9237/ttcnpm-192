@@ -36,6 +36,7 @@ import { ApplyCouponComponent } from './apply-coupon/apply-coupon.component';
 import { FilterProductsComponent } from './filter-products/filter-products.component';
 import { ContactComponent } from './contact/contact.component';
 import { FavoriteProductComponent } from './favorite-product/favorite-product.component';
+import { OrderTableComponent } from './order-table/order-table.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { FavoriteProductComponent } from './favorite-product/favorite-product.co
     FilterProductsComponent,
     ContactComponent,
     FavoriteProductComponent,
+    OrderTableComponent,
   ],
   imports: [
     BrowserModule,

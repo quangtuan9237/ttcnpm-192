@@ -1,16 +1,18 @@
 import { ShoppingCart } from './app-shoping-cart';
 export class AppOrder{
+  status: number;
   userId: string;
   datePlaced: number;
   items: any[];
-  status: string;
+  vendorId: string;
 
-  constructor(userId: string, status: string, shoppingCart: ShoppingCart){
+  constructor(userId: string, inputData: ShoppingCart | any){
     this.userId = userId;
-    this.datePlaced = new Date().getTime();
-    this.status = status;
+    this.datePlaced = inputData.datePlaced | new Date().getTime();
+    this.status = inputData.status | 0;
+    this.vendorId = inputData.vendorId;
 
-    this.items = shoppingCart.items.map(i => {
+    this.items = inputData.items.map(i => {
       return {
         title: i.title,
         imageUrl: i.imageUrl,
@@ -20,6 +22,10 @@ export class AppOrder{
         vendorId: i.vendorId
       }
     })
+  }
+
+  isUserUnknow(){
+    return this.userId === "0"
   }
 
   get totalItemCount(){

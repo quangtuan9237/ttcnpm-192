@@ -26,16 +26,23 @@ export class MasterCart{
       return shoppingCart.getQuantity(product);
    }
 
+   getSelectedCarts(vendorIds: string[]){
+      if(!vendorIds) return [];
+
+      return this.cartList.filter(cart => {
+         return vendorIds.includes(cart.vendorId);
+      })
+   }
+
    getTotalPrice(vendorIds: string[]){
-      // console.log(vendorIds);
       if(!vendorIds || vendorIds.length == 0) return 0;
 
       let cartOfVendors = vendorIds.map(id => {
          return this.cartList_set[id];
       })
-      // console.log(cartOfVendors);
 
       return cartOfVendors.reduce((acc, i) => {
+         if(!i) return acc;
          return acc + i.totalPrice
       }, 0)
    }

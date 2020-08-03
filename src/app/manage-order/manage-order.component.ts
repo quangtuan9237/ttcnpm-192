@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { OrderService } from '../order.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
 import { AuthService } from '../auth.service';
 import { switchMap } from 'rxjs/operators';
 
@@ -12,34 +10,19 @@ import { switchMap } from 'rxjs/operators';
 })
 export class ManageOrderComponent implements OnInit {
   orders$;
-  displayedColumns: any[] = ['customer', 'date', 'view'];
-  dataSource: MatTableDataSource<any>;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  displayedColumns: any[] = ['customer', 'date', 'status', 'view',];
 
   constructor(
     private authService: AuthService,
     private orderService: OrderService
   ) { 
-    this.orders$ = this.orderService.getAll();
   }
 
-
-
-  async ngOnInit(): Promise<void> {
-    // let uid = await (await this.authService.getUser()).uid
-
-    this.orders$.subscribe(order =>{
-      this.dataSource = new MatTableDataSource(order)
-      this.dataSource.sort = this.sort;
-    })
+  ngOnInit(){
+    this.orders$ = this.authService.user$.pipe(
+      switchMap(user => {
+        return this.orderService.getVenderOrders(user.uid);
+      })
+    )
   }
-
-
-  // constructor(private orderService: OrderService) { 
-  //   this.orders$ = this.orderService.getAll();
-  //   // console.log(this.orders$);
-  // }
-
-  // ngOnInit(): void {
-  // }
 }

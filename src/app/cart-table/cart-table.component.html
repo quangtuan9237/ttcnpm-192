@@ -3,7 +3,7 @@
       <!-- Image Column -->
       <ng-container matColumnDef="thumbnail">
         <th mat-header-cell *matHeaderCellDef>
-          <mat-checkbox class="cart-checkbox" [(ngModel)]="checked" (change)="onSelectVendor(cart.vendorId)">
+          <mat-checkbox [disabled]="!allowAction" class="cart-checkbox" [(ngModel)]="checked" (change)="onSelectVendor(cart.vendorId)">
           <span *ngIf="vendors$ | async as vendors">
             <!-- <mat-icon>person</mat-icon> -->
             {{ vendors[cart.vendorId].name }}
