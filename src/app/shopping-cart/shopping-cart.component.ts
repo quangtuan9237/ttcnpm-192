@@ -41,16 +41,19 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     // this._snackBar.dismiss();
   }
 
-  // openSnackBar() {
-  //   this._snackBar.openFromComponent(ShoppingCartSnackBarComponent, {
-  //     duration: -1,
-  //     data: this.masterCart
-  //   });
-  // }
-
   async clearCart(){
     if(!confirm("Are you sure you want to clear the shopping cart?")) return;
     // await this.cart.clearCart();
+  }
+
+  onCheckout(){
+    if(this.selectedVendorIds.length == 0) return alert("Xin chọn sản phẩm để thanh toán!")
+
+    this.router.navigate(['check-out'], {
+      queryParams: {
+        selectedVendorIds: JSON.stringify(this.selectedVendorIds)
+      }
+    })
   }
 
   addVendor(vendorId){

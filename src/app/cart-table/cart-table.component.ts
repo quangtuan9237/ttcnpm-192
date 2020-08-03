@@ -15,10 +15,10 @@ export class CartTableComponent implements OnInit, OnDestroy, OnChanges {
   @Input('allow-action') allowAction: boolean = false;
   @Output('selected') selected = new EventEmitter<boolean>();
   @Output('removed') removed = new EventEmitter<boolean>();
-  checked
-  vendors$: Observable<any>
-  sub: Subscription
-  selectedVendorIds: Array<string>
+  checked: boolean = false;
+  vendors$: Observable<any>;
+  sub: Subscription;
+  selectedVendorIds: Array<string>;
 
   constructor(
     private roleService: RoleService,
@@ -35,7 +35,7 @@ export class CartTableComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(){
-    if(this.cart){
+    if(this.cart && this.selectedVendorIds && this.selectedVendorIds.length != 0){
       if(this.selectedVendorIds.includes(this.cart.vendorId)) {
         this.checked = true;
       }

@@ -65,7 +65,6 @@ export class ShoppingCartService {
 
   private create(){
     return this.db.list('/shopping-carts').push({
-      dateCreated: new Date().getTime()
     })
   }
 

@@ -2,63 +2,51 @@
 <h1>Shopping Cart</h1>
 <ng-container *ngIf="masterCart">
 
-<!-- <div class="shopping-cart" *ngFor="let cart of masterCart.cartList">
-<app-cart-table *ngIf="cart.items.length" 
-(selected)="addVendor($event)" 
-(removed)="removeVendor($event)" 
-[allow-action]='true' 
-[shopping-cart]="cart" 
-[displayed-columns]="displayedColumns"></app-cart-table>
-</div> -->
+<table class="cart-table" mat-table [dataSource]="masterCart.cartList">
+  <!-- Title Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>Sản phẩm</th>
+    <td mat-cell *matCellDef="let cart">
+      <app-cart-table *ngIf="cart.items.length" 
+      (selected)="addVendor($event)" 
+      (removed)="removeVendor($event)" 
+      [allow-action]='true' 
+      [shopping-cart]="cart" 
+      [displayed-columns]="displayedColumns"></app-cart-table>
+    </td>
+    <td mat-footer-cell *matFooterCellDef>
+      <mat-list>
+        <mat-list-item>
+          <div #VoucherBtn class='footer-items'>
+            <button *ngIf="!VoucherBtn.value" mat-stroked-button (click)="VoucherBtn.value = true" color="primary">
+            <mat-icon>receipt</mat-icon>
+            Nhập mã giảm giá
+            </button>
 
-<!-- <button class='action-btn' *ngIf="cart.items.length" routerLink="/check-out"mat-raised-button color="primary">Checkout</button>
-<button class='action-btn' *ngIf="!cart.items.length" routerLink="/"mat-raised-button color="accent">Back</button> -->
-
-  <table class="cart-table" mat-table [dataSource]="masterCart.cartList">
-    <!-- Title Column -->
-    <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef>Sản phẩm</th>
-      <td mat-cell *matCellDef="let cart">
-        <app-cart-table *ngIf="cart.items.length" 
-        (selected)="addVendor($event)" 
-        (removed)="removeVendor($event)" 
-        [allow-action]='true' 
-        [shopping-cart]="cart" 
-        [displayed-columns]="displayedColumns"></app-cart-table>
-      </td>
-      <td mat-footer-cell *matFooterCellDef>
-        <mat-list>
-          <mat-list-item>
-            <div #VoucherBtn class='footer-items'>
-              <button *ngIf="!VoucherBtn.value" mat-stroked-button (click)="VoucherBtn.value = true" color="primary">
-              <mat-icon>receipt</mat-icon>
-              Nhập mã giảm giá
+            <mat-form-field class="example-form-field" *ngIf='VoucherBtn.value'>
+              <mat-label></mat-label>
+              <input placeholder="Mã giảm giá" #VoucherInput matInput type="text">
+              <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="VoucherInput.value=''; VoucherBtn.value=false">
+                <mat-icon>close</mat-icon>
               </button>
+            </mat-form-field>
+          </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <div class='footer-items'>
+          Tổng tiền hàng: 
+          <span id="price">{{ masterCart.getTotalPrice(selectedVendorIds) | currency:'VND':'symbol' }}</span>
+          <button (click)="onCheckout()" class="buy-btn" mat-raised-button color="primary">Mua Hàng</button>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </td>
+  </ng-container>
 
-              <mat-form-field class="example-form-field" *ngIf='VoucherBtn.value'>
-                <mat-label></mat-label>
-                <input placeholder="Mã giảm giá" #VoucherInput matInput type="text">
-                <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="VoucherInput.value=''; VoucherBtn.value=false">
-                  <mat-icon>close</mat-icon>
-                </button>
-              </mat-form-field>
-            </div>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>
-            <div class='footer-items'>
-            Tổng tiền hàng: 
-            <span id="price">{{ masterCart.getTotalPrice(selectedVendorIds) | currency:'VND':'symbol' }}</span>
-            <button class="buy-btn" mat-raised-button color="primary">Mua Hàng</button>
-            </div>
-          </mat-list-item>
-        </mat-list>
-      </td>
-    </ng-container>
-
-    <!-- <tr mat-header-row *matHeaderRowDef="['title']"></tr> -->
-    <tr mat-row *matRowDef="let row; columns: ['title'];"></tr>
-    <tr mat-footer-row *matFooterRowDef="['title']; sticky: true"></tr>
-  </table>
+  <!-- <tr mat-header-row *matHeaderRowDef="['title']"></tr> -->
+  <tr mat-row *matRowDef="let row; columns: ['title'];"></tr>
+  <tr mat-footer-row *matFooterRowDef="['title']; sticky: true"></tr>
+</table>
 </ng-container>
 </div>

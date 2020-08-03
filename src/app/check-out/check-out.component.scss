@@ -1,14 +1,36 @@
 .container{
-    width: 70%;
-    margin: auto;
+  width: 70%;
+  margin: auto;
 }
 
-.example-container {
-  max-height: 450px;
-  overflow: auto;
-}
+.cart-table{
+  width: 100%;
 
-button{
-  margin-top: 20px;
-  margin-right: 20px;
+  .mat-table-sticky {
+    border: 1px solid #e0e0e0;
+    padding: 0
+  }
+
+  th.mat-header-cell, td.mat-cell{
+    padding-bottom: 20px;
+    border: none;
+  }
+
+  td.mat-footer-cell{
+    font-size: 20px;
+  }
+
+  .footer-items{
+    position: absolute;
+    right: 0;
+  }
+
+  #price{
+    font-weight: bolder;
+    color: #673ab7;
+  }
+
+  .buy-btn{
+    margin-left: 20px;
+  }
 }
