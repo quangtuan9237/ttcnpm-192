@@ -15,11 +15,11 @@ import { AppUser } from '../models/app-user';
   styleUrls: ['./check-out.component.scss']
 })
 export class CheckOutComponent implements OnInit, OnDestroy {
-  selectedVendorIds: string[] = [];
   masterCart : MasterCart
-  sub: Subscription
-  sub2: Subscription
   displayedColumns = ['thumbnail', 'title', 'quantity', 'total_price'];
+  selectedVendorIds: any;
+  sub2: Subscription;
+  sub: Subscription
 
   constructor(
     private cartService: ShoppingCartService,
@@ -34,7 +34,6 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     let cart$ = await this.cartService.get();
     this.sub = cart$.subscribe(c => {
       this.masterCart = c;
-      // console.log("cart", this.shoppingCart)
     })
 
     this.sub2 = this.activatedRoute.queryParamMap.subscribe(paramMap => {
@@ -51,10 +50,26 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     this.sub2.unsubscribe();
   }
 
-  async placeOrder(){
-    // let userId = (await this.auth.getUser()).uid;
-    // let order = new AppOrder(userId, "Processing", this.shoppingCart);
-    // let result = this.orderService.create(order);
-    // this.router.navigate(['/order-success', (await result).key]);
+  async onConfirm(){
+    let user = (await this.auth.getUser())
+    let userId = "0";
+
+    if(user){
+      userId = user.uid;
+    }
+
+    let carts = this.masterCart.getSelectedCarts(this.selectedVendorIds);
+
+    let orders = carts.map(cart => {
+      return new AppOrder(userId, cart)
+    })
+
+    let result = this.orderService.create(orders);
+
+    this.router.navigate(['/order-success'], {
+      queryParams: {
+        orderIds: JSON.stringify(await result)
+      }
+    });
   }
 }

@@ -1,45 +1,38 @@
 <div class="container">
 <h1>Checkout</h1>
 <ng-container *ngIf="masterCart">
-<table class="cart-table" mat-table [dataSource]="masterCart.getSelectedCart(selectedVendorIds)">
-  <!-- Title Column -->
-  <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef>Sản phẩm</th>
-    <td mat-cell *matCellDef="let cart">
-      <app-cart-table *ngIf="cart.items.length" 
-      [shopping-cart]="cart" 
-      [displayed-columns]="displayedColumns"></app-cart-table>
-    </td>
-    <td mat-footer-cell *matFooterCellDef>
-      <mat-list>
-        <mat-list-item>
+  <table class="cart-table" mat-table [dataSource]="masterCart.getSelectedCarts(selectedVendorIds)">
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Sản phẩm</th>
+      <td mat-cell *matCellDef="let cart">
+        <app-cart-table *ngIf="cart.items.length" 
+        [shopping-cart]="cart" 
+        [displayed-columns]="displayedColumns"></app-cart-table>
+      </td>
+      <td mat-footer-cell *matFooterCellDef>
+        <mat-list>
+          <mat-list-item>
             <div class='footer-items'>
-            Tổng giảm giá: 
+            Tổng chiết khấu:
             <span id="price">{{ 0 | currency:'VND':'symbol' }}</span>
             </div>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <div class='footer-items'>
-          Tổng tiền hàng: 
-          <span id="price">{{ masterCart.getTotalPrice(selectedVendorIds) | currency:'VND':'symbol' }}</span>
-          </div>
-        </mat-list-item>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <div class='footer-items'>
+            Tổng tiền hàng: 
+            <span id="price">{{ masterCart.getTotalPrice(selectedVendorIds) | currency:'VND':'symbol' }}</span>
+            <button (click)="onConfirm()" class="buy-btn" mat-raised-button color="primary">Xác nhận</button>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </td>
+    </ng-container>
 
-        <mat-divider></mat-divider>
-
-        <mat-list-item>
-          <div class='footer-items'>
-          <button (click)="placeOrder()" class="buy-btn" mat-raised-button color="primary">Xác nhận</button>
-          </div>
-        </mat-list-item>
-      </mat-list>
-    </td>
-  </ng-container>
-
-  <!-- <tr mat-header-row *matHeaderRowDef="['title']"></tr> -->
-  <tr mat-row *matRowDef="let row; columns: ['title'];"></tr>
-  <tr mat-footer-row *matFooterRowDef="['title']; sticky: true"></tr>
-</table>
+    <!-- <tr mat-header-row *matHeaderRowDef="['title']"></tr> -->
+    <tr mat-row *matRowDef="let row; columns: ['title'];"></tr>
+    <tr mat-footer-row *matFooterRowDef="['title']; sticky: true"></tr>
+  </table>
 </ng-container>
 </div>

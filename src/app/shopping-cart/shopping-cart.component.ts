@@ -25,7 +25,6 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   async ngOnInit(){
     this.sub = (await this.cartService.get()).subscribe(masterCart => {
       this.masterCart = masterCart;
-      // this.openSnackBar();
     })
 
     this.sub = this.activatedRoute.queryParamMap.subscribe(paramMap => {
@@ -38,22 +37,23 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    // this._snackBar.dismiss();
+  }
+
+  onCheckout(){
+    if(this.selectedVendorIds.length == 0) return alert("Vui lòng chọn ít nhất một giỏ hàng để thanh toán!")
+
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        selectedVendorIds: JSON.stringify(this.selectedVendorIds)
+      },
+    }
+    
+    this.router.navigate(['check-out'], navigationExtras)
   }
 
   async clearCart(){
     if(!confirm("Are you sure you want to clear the shopping cart?")) return;
     // await this.cart.clearCart();
-  }
-
-  onCheckout(){
-    if(this.selectedVendorIds.length == 0) return alert("Xin chọn sản phẩm để thanh toán!")
-
-    this.router.navigate(['check-out'], {
-      queryParams: {
-        selectedVendorIds: JSON.stringify(this.selectedVendorIds)
-      }
-    })
   }
 
   addVendor(vendorId){

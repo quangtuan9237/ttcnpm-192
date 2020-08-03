@@ -7,8 +7,7 @@
   width: 100%;
 
   .mat-table-sticky {
-    border: 1px solid #e0e0e0;
-    padding: 0
+    border-top: 1px solid #e0e0e0;
   }
 
   th.mat-header-cell, td.mat-cell{
@@ -29,8 +28,9 @@
     font-weight: bolder;
     color: #673ab7;
   }
-
+  
   .buy-btn{
     margin-left: 20px;
   }
 }
+

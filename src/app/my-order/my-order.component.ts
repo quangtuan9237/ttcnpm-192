@@ -4,6 +4,7 @@ import { AuthService } from './../auth.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-my-order',
@@ -11,9 +12,8 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./my-order.component.scss']
 })
 export class MyOrderComponent implements OnInit {
-  orders$;
+  orders$ : Observable<any>;
   displayedColumns: any[] = ['customer', 'date', 'status', 'view',];
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
     private authService: AuthService,
@@ -23,8 +23,7 @@ export class MyOrderComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.orders$ = this.authService.user$.pipe(
-      switchMap(u => this.orderService.getOrdersByUser(u.uid))
+      switchMap(u => this.orderService.getSeflOrders(u.uid))
     );
-    // console.log(this.orders$)
   }
 }

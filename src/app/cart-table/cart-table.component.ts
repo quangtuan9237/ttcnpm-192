@@ -35,7 +35,7 @@ export class CartTableComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(){
-    if(this.cart && this.selectedVendorIds && this.selectedVendorIds.length != 0){
+    if(this.cart && this.selectedVendorIds && this.selectedVendorIds.length){
       if(this.selectedVendorIds.includes(this.cart.vendorId)) {
         this.checked = true;
       }

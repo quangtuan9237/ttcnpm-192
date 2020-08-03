@@ -33,7 +33,6 @@ export class ProductService {
     return this.db.object(`/users/${user_id}/products`).valueChanges().pipe(
       switchMap((setProducts) => {
         let listId = Object.keys(setProducts);
-// ung' voi moi~ 1 id, se~ goi ham this.get(id)
         return zip(...listId.map((id) => this.get(id)))
       })
     )
