@@ -16,7 +16,7 @@ import { AuthService } from '../auth.service';
 export class ProductsComponent implements OnInit, OnDestroy {
   products: AppProduct[];
   displayProducts: AppProduct[];
-  favorite$: Observable<unknown>;
+  favorite = {};
   masterCart;
   subProduct: Subscription
   subscription: Subscription
@@ -37,14 +37,19 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.masterCart = cart
     })
 
-    this.subscription2 = this.authService.user$.subscribe(user => {
-      this.favorite$ = this.favoriteService.getAllIds(user.uid);
+    this.subscription2 = this.authService.user$.pipe(
+      switchMap(user => {
+        if(user){
+          this.userId = user.uid;
+        }else{
+          this.userId = null;
+        }
 
-      if(user){
-        this.userId = user.uid;
-      }else{
-        this.userId = null;
-      }
+        return this.favoriteService.getAllIds(user.uid);
+      })
+    ).subscribe(favorite => {
+      if(favorite) this.favorite = favorite;
+      else this.favorite = {};
     })
 
     this.subProduct = this.productService.getAll().pipe(

@@ -3,7 +3,7 @@
     <app-filter-products></app-filter-products>
 </div>
 
-<div id="products-list" *ngIf="favorite$ | async as favorite">
+<div id="products-list" *ngIf="favorite">
     <div class='product-item' *ngFor="let p of displayProducts">
         <app-product-card 
         [shopping-cart]='masterCart' 

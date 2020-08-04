@@ -3,7 +3,7 @@ import { AppProductList } from './models/app-list-product';
 import { AngularFireDatabase, SnapshotAction } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 import { map,switchMap } from 'rxjs/operators';
-import { zip, Observable } from 'rxjs';
+import { zip, Observable, empty } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,10 +33,15 @@ export class ProductService {
     return this.db.object(`/users/${user_id}/products`).valueChanges().pipe(
       switchMap((setProducts) => {
         let listId = Object.keys(setProducts);
-// ung' voi moi~ 1 id, se~ goi ham this.get(id)
         return zip(...listId.map((id) => this.get(id)))
       })
     )
+  }
+
+  getList(ids: string[]){
+    if(!ids) return empty();
+
+    return zip(...ids.map((id) => this.get(id)));
   }
 
   getAll(){

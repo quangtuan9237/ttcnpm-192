@@ -3,7 +3,7 @@
         <app-filter-products></app-filter-products>
     </div>
     
-    <div id="products-list">
+    <div id="products-list" *ngIf="favorite">
         <div class='product-item' *ngFor="let p of displayProducts">
               
             <app-product-card 
@@ -11,6 +11,7 @@
             [show-action]='true' 
             [product]='p'
             [user-id]='userId'
+            [is-favorite]='favorite[p.key]'
             >
             </app-product-card>
             

@@ -1,17 +1,13 @@
-import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { switchMap, map } from 'rxjs/operators';
-import { zip, Observable, Subscription, empty } from 'rxjs';
+import { zip, Observable, empty, of } from 'rxjs';
 import { ProductService } from './product.service';
-import { AppProduct } from './models/app-product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavoriteService {
-  private userId: string = null;
-
   constructor(
     private db: AngularFireDatabase,
     private productService: ProductService,
@@ -29,18 +25,28 @@ export class FavoriteService {
   getAllIds(userId: string){
     if(!userId) return empty();
 
-    // (await this.db.database.ref(`/users/${userId}/favorite`).once()).exists()
-
     return this.db.object(`/users/${userId}/favorite`).valueChanges() as Observable<{[key: string]: boolean}>
   }
 
   getAll(userId: string){
     return this.db.object(`/users/${userId}/favorite`).valueChanges().pipe(
       switchMap((setFavorites) => {
-        let listId = Object.keys(setFavorites);
-        console.log(listId);
-        return zip(...listId.map((productId) => this.productService.get(productId)))
+        if(!setFavorites){
+          return of([])
+        } 
+
+        let listId = Object.keys(setFavorites)
+        return zip(...listId.map((productId) => this.productService.get(productId)));
       })
     )
   }
+  
+  // getAll(userId: string){
+  //   return this.db.object(`/users/${userId}/favorite`).valueChanges().pipe(
+  //     switchMap((setFavorites) => {
+  //       let favorites = setFavorites ? Object.keys(setFavorites) : [];
+  //       return this.productService.getList(favorites);
+  //     })
+  //   )
+  // }
 }

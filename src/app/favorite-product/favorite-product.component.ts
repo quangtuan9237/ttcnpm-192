@@ -15,11 +15,14 @@ import { FavoriteService } from '../favorite.service';
 })
 export class FavoriteProductComponent implements OnInit, OnDestroy {
   products: AppProduct[];
+  favorite = {};
   displayProducts: AppProduct[];
   masterCart: MasterCart;
   userId: string
   subscription: Subscription
   subscription2: Subscription;
+  productSub: Subscription;
+  favoriteSub: Subscription;
 
   constructor(
     private cartService: ShoppingCartService,
@@ -27,7 +30,18 @@ export class FavoriteProductComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private favoriteService: FavoriteService
   ) {
-    this.authService.user$.pipe(
+
+    this.favoriteSub = this.authService.user$.pipe(
+      switchMap(user => {
+        return this.favoriteService.getAllIds(user.uid);
+      })
+    ).subscribe(favorite => {
+      if(favorite) this.favorite = favorite;
+      else this.favorite = {};
+      // console.log("favorite changed", this.favorite)
+    })
+
+    this.productSub = this.authService.user$.pipe(
       switchMap(user => {
         return this.favoriteService.getAll(user.uid).pipe(
           switchMap(products => {
@@ -87,5 +101,7 @@ export class FavoriteProductComponent implements OnInit, OnDestroy {
   async ngOnDestroy(){
     this.subscription.unsubscribe();
     this.subscription2.unsubscribe();
+    this.favoriteSub.unsubscribe();
+    this.productSub.unsubscribe();
   }
 }
