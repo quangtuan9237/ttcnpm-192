@@ -1,0 +1,33 @@
+.container{
+    overflow: hidden;
+    width: 90%;
+    margin:auto;
+}
+
+#products-filter{
+    float: left;
+    width: 22%;
+}
+
+#products-list{
+    width: 75%;
+    float: right;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-item{
+    margin: 2%;
+}
+
+// .iconFavorite {
+//     display: none;
+// }
+
+app-product-card:hover {
+    
+        display: inline;
+    
+    
+}

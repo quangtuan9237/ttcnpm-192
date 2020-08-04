@@ -6,7 +6,9 @@ import { MatComponentsModule } from './mat-components/mat-components.module';
 import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FavoriteService} from './favorite.service';
 
+import {MatTooltipModule} from '@angular/material/tooltip';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -74,12 +76,14 @@ import { OrderTableComponent } from './order-table/order-table.component';
     AngularFireAuthModule,
     BrowserAnimationsModule,
     MatComponentsModule,
-    FormsModule
+    FormsModule,
+    MatTooltipModule
   ],
   providers: [
     AuthService,
     ProductService,
-    ShoppingCartService
+    ShoppingCartService,
+    FavoriteService
   ],
   bootstrap: [AppComponent]
 })

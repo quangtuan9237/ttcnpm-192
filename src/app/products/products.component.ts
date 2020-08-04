@@ -1,10 +1,12 @@
+import { FavoriteService } from './../favorite.service';
 import { AppProduct } from './../models/app-product';
 import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { ShoppingCartService } from './../shopping-cart.service';
 import { ProductService } from './../product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-products',
@@ -14,15 +16,42 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 export class ProductsComponent implements OnInit, OnDestroy {
   products: AppProduct[];
   displayProducts: AppProduct[];
+  favorite = {};
   masterCart;
   subProduct: Subscription
   subscription: Subscription
+  userId: string
+  subscription2: Subscription;
 
   constructor(
     private productService: ProductService,
     private cartService: ShoppingCartService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService,
+    private favoriteService: FavoriteService
   ) {
+  }
+
+  async ngOnInit(){
+    this.subscription = (await this.cartService.get()).subscribe(cart => {
+      this.masterCart = cart
+    })
+
+    this.subscription2 = this.authService.user$.pipe(
+      switchMap(user => {
+        if(user){
+          this.userId = user.uid;
+        }else{
+          this.userId = null;
+        }
+
+        return this.favoriteService.getAllIds(user.uid);
+      })
+    ).subscribe(favorite => {
+      if(favorite) this.favorite = favorite;
+      else this.favorite = {};
+    })
+
     this.subProduct = this.productService.getAll().pipe(
       switchMap(products => {
         this.products = products;
@@ -58,19 +87,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
       }
 
       this.displayProducts = filteredProducts;
-
-      // console.log("leght:",this.displayProducts.length);
-    })
-  }
-
-  async ngOnInit(){
-    this.subscription = (await this.cartService.get()).subscribe(cart => {
-      this.masterCart = cart
     })
   }
 
   async ngOnDestroy(){
     this.subscription.unsubscribe();
     this.subProduct.unsubscribe();
+    this.subscription2.unsubscribe();
   }
 }
